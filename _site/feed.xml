@@ -1,4 +1,574 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-12-20T22:42:30+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ƬMᄃYBΣЯ</title><subtitle>Personal Blog</subtitle><entry><title type="html">Masscan [tmcybers Hidden Aim]</title><link href="http://localhost:4000/blog/masscan-cheat-sheet" rel="alternate" type="text/html" title="Masscan [tmcybers Hidden Aim]" /><published>2022-12-20T00:00:00+01:00</published><updated>2022-12-20T00:00:00+01:00</updated><id>http://localhost:4000/blog/masscan-cheat-sheet</id><content type="html" xml:base="http://localhost:4000/blog/masscan-cheat-sheet"><![CDATA[<h1 id="en-algunos-casos-masscan-es-mejor-que-nmap">En algunos casos, masscan es mejor que nmap</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-12-27T00:54:27+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">ƬMᄃYBΣЯ</title><subtitle>Personal Blog</subtitle><entry><title type="html">Shodan Dorks [tmcybers Hidden Aim]</title><link href="http://localhost:4000/blog/shodan-dorks-tmcybers-hidden-aim" rel="alternate" type="text/html" title="Shodan Dorks [tmcybers Hidden Aim]" /><published>2022-12-26T00:00:00+01:00</published><updated>2022-12-26T00:00:00+01:00</updated><id>http://localhost:4000/blog/shodan-dorks-tmcybers-hidden%20aim</id><content type="html" xml:base="http://localhost:4000/blog/shodan-dorks-tmcybers-hidden-aim"><![CDATA[<h1 id="basic-shodan-filters">Basic Shodan Filters</h1>
+
+<ul>
+  <li>city:
+    <h5 id="find-devices-in-a-particular-city-citymadrid">Find devices in a particular city. <code class="language-plaintext highlighter-rouge">city:"Madrid"</code></h5>
+  </li>
+  <li>country:
+    <h6 id="find-devices-in-a-particular-country-countryin">Find devices in a particular country. <code class="language-plaintext highlighter-rouge">country:"IN"</code></h6>
+  </li>
+  <li>geo:
+    <h5 id="find-devices-by-giving-geographical-coordinates-geo56913055118250862">Find devices by giving geographical coordinates. <code class="language-plaintext highlighter-rouge">geo:"56.913055,118.250862"</code></h5>
+  </li>
+</ul>
+
+<h2 id="location">Location</h2>
+<p><code class="language-plaintext highlighter-rouge">country:us</code> <code class="language-plaintext highlighter-rouge">country:ru country:de city:chicago</code></p>
+
+<ul>
+  <li>hostname:
+    <h5 id="find-devices-matching-the-hostname-server-gws-hostnamegoogle-hostnameexamplecom--hostnamesubdomainexamplecom-hostnameexamplecomexampleorg">Find devices matching the hostname. <code class="language-plaintext highlighter-rouge">server: "gws" hostname:"google"</code> <code class="language-plaintext highlighter-rouge">hostname:example.com -hostname:subdomain.example.com</code> <code class="language-plaintext highlighter-rouge">hostname:example.com,example.org</code></h5>
+  </li>
+  <li>net:
+    <h5 id="find-devices-based-on-an-ip-address-or-x-cidr-net2102140016">Find devices based on an IP address or /x CIDR. <code class="language-plaintext highlighter-rouge">net:210.214.0.0/16</code></h5>
+  </li>
+</ul>
+
+<h1 id="organization">Organization</h1>
+<p><code class="language-plaintext highlighter-rouge">org:microsoft org:"United States Department"</code></p>
+
+<h5 id="autonomous-system-number-asn">Autonomous System Number (ASN)</h5>
+<p><code class="language-plaintext highlighter-rouge">asn:ASxxxx</code></p>
+
+<ul>
+  <li>os:
+    <h6 id="find-devices-based-on-operating-system-oswindows-7">Find devices based on operating system. <code class="language-plaintext highlighter-rouge">os:"windows 7"</code></h6>
+  </li>
+  <li>port:
+    <h6 id="find-devices-based-on-open-ports-proftpd-port21">Find devices based on open ports. <code class="language-plaintext highlighter-rouge">proftpd port:21</code></h6>
+  </li>
+  <li>before/after:
+    <h6 id="find-devices-before-or-after-between-a-given-time-apache-after22022009-before1432010">Find devices before or after between a given time. <code class="language-plaintext highlighter-rouge">apache after:22/02/2009 before:14/3/2010</code></h6>
+  </li>
+</ul>
+
+<h1 id="ssltls-certificates">SSL/TLS Certificates</h1>
+<ul>
+  <li>Self signed certificates <code class="language-plaintext highlighter-rouge">ssl.cert.issuer.cn:example.com ssl.cert.subject.cn:example.com</code></li>
+</ul>
+
+<h4 id="expired-certificates-sslcertexpiredtrue--sslcertsubjectcnexamplecom">Expired certificates <code class="language-plaintext highlighter-rouge">ssl.cert.expired:true</code>  <code class="language-plaintext highlighter-rouge">ssl.cert.subject.cn:example.com</code></h4>
+
+<h2 id="device-type">Device Type</h2>
+<p><code class="language-plaintext highlighter-rouge">device:firewall</code> 
+<code class="language-plaintext highlighter-rouge">device:router</code> 
+<code class="language-plaintext highlighter-rouge">device:wap</code> <code class="language-plaintext highlighter-rouge">device:webcam</code> <code class="language-plaintext highlighter-rouge">device:media</code> <code class="language-plaintext highlighter-rouge">device:"broadband router"</code> <code class="language-plaintext highlighter-rouge">device:pbx</code> <code class="language-plaintext highlighter-rouge">device:printer</code> <code class="language-plaintext highlighter-rouge">device:switch</code> <code class="language-plaintext highlighter-rouge">device:storage</code> <code class="language-plaintext highlighter-rouge">device:specialized</code> <code class="language-plaintext highlighter-rouge">device:phone</code> <code class="language-plaintext highlighter-rouge">device:"voip"</code> <code class="language-plaintext highlighter-rouge">device:"voip phone"</code> <code class="language-plaintext highlighter-rouge">device:"voip adaptor"</code> <code class="language-plaintext highlighter-rouge">device:"load balancer"</code> <code class="language-plaintext highlighter-rouge">device:"print server"</code> <code class="language-plaintext highlighter-rouge">device:terminal</code> <code class="language-plaintext highlighter-rouge">device:remote</code> <code class="language-plaintext highlighter-rouge">device:telecom</code> <code class="language-plaintext highlighter-rouge">device:power</code> <code class="language-plaintext highlighter-rouge">device:proxy</code> <code class="language-plaintext highlighter-rouge">device:pda</code> <code class="language-plaintext highlighter-rouge">device:bridge</code></p>
+
+<h1 id="operating-system">Operating System</h1>
+<p><code class="language-plaintext highlighter-rouge">os:"windows 7"</code> <code class="language-plaintext highlighter-rouge">os:"windows server 2012"</code> <code class="language-plaintext highlighter-rouge">os:"linux 3.x"</code></p>
+
+<h2 id="product">Product</h2>
+<p><code class="language-plaintext highlighter-rouge">product:apache</code> <code class="language-plaintext highlighter-rouge">product:nginx</code> <code class="language-plaintext highlighter-rouge">product:android</code> <code class="language-plaintext highlighter-rouge">product:chromecast</code></p>
+
+<h4 id="customer-premises-equipment-cpe">Customer Premises Equipment (CPE)</h4>
+<p><code class="language-plaintext highlighter-rouge">cpe:apple</code> <code class="language-plaintext highlighter-rouge">cpe:microsoft</code> <code class="language-plaintext highlighter-rouge">cpe:nginx</code> <code class="language-plaintext highlighter-rouge">cpe:cisco</code></p>
+
+<h2 id="server">Server</h2>
+<p><code class="language-plaintext highlighter-rouge">server: nginx</code> <code class="language-plaintext highlighter-rouge">server: apache</code> <code class="language-plaintext highlighter-rouge">server: microsoft</code> <code class="language-plaintext highlighter-rouge">server: cisco-ios</code></p>
+
+<h4 id="ssh-fingerprints">ssh fingerprints</h4>
+<p><code class="language-plaintext highlighter-rouge">dc:14:de:8e:d7:c1:15:43:23:82:25:81:d2:59:e8:c0</code></p>
+
+<h1 id="web">Web</h1>
+<h4 id="pulse-secure">Pulse Secure</h4>
+<p><code class="language-plaintext highlighter-rouge">http.html:/dana-na</code></p>
+
+<h4 id="pem-certificates">PEM Certificates</h4>
+<p><code class="language-plaintext highlighter-rouge">http.title:"Index of /" http.html:".pem"</code></p>
+
+<h4 id="tor--dark-web-sites">Tor / Dark Web sites</h4>
+<p><code class="language-plaintext highlighter-rouge">onion-location</code></p>
+
+<h1 id="databases">Databases</h1>
+<h4 id="mysql">MySQL</h4>
+<p><code class="language-plaintext highlighter-rouge">"product:MySQL"</code> <code class="language-plaintext highlighter-rouge">mysql port:"3306"</code></p>
+
+<h4 id="mongodb">MongoDB</h4>
+<p><code class="language-plaintext highlighter-rouge">"product:MongoDB"</code> <code class="language-plaintext highlighter-rouge">mongodb port:27017</code></p>
+
+<h4 id="fully-open-mongodbs">Fully open MongoDBs</h4>
+<p><code class="language-plaintext highlighter-rouge">"MongoDB Server Information { "metrics":"</code> <code class="language-plaintext highlighter-rouge">"Set-Cookie: mongo-express=" "200 OK"</code> <code class="language-plaintext highlighter-rouge">"MongoDB Server Information" port:27017 -authentication</code></p>
+
+<h4 id="kibana-dashboards-without-authentication">Kibana dashboards without authentication</h4>
+<p><code class="language-plaintext highlighter-rouge">kibana content-legth:217</code></p>
+
+<h4 id="elastic">elastic</h4>
+<p><code class="language-plaintext highlighter-rouge">port:9200 json</code> <code class="language-plaintext highlighter-rouge">port:"9200" all:elastic</code> <code class="language-plaintext highlighter-rouge">port:"9200" all:"elastic indices"</code></p>
+
+<h4 id="memcached">Memcached</h4>
+<p><code class="language-plaintext highlighter-rouge">"product:Memcached"</code></p>
+
+<h4 id="couchdb">CouchDB</h4>
+<p><code class="language-plaintext highlighter-rouge">"product:CouchDB"</code> <code class="language-plaintext highlighter-rouge">port:"5984"+Server: "CouchDB/2.1.0"</code></p>
+
+<h4 id="postgresql">PostgreSQL</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:5432 PostgreSQL"</code></p>
+
+<h4 id="riak">Riak</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:8087 Riak"</code></p>
+
+<h4 id="redis">Redis</h4>
+<p><code class="language-plaintext highlighter-rouge">"product:Redis"</code></p>
+
+<h4 id="cassandra">Cassandra</h4>
+<p><code class="language-plaintext highlighter-rouge">"product:Cassandra"</code></p>
+
+<h1 id="industrial-control-systems">Industrial Control Systems</h1>
+
+<h4 id="samsung-electronic-billboards">Samsung Electronic Billboards</h4>
+<p><code class="language-plaintext highlighter-rouge">"Server: Prismview Player"</code></p>
+
+<h4 id="gas-station-pump-controllers">Gas Station Pump Controllers</h4>
+<p><code class="language-plaintext highlighter-rouge">"in-tank inventory" port:10001</code></p>
+
+<h4 id="fuel-pumps-connected-to-internet">Fuel Pumps connected to internet:</h4>
+<h4 id="no-auth-required-to-access-cli-terminal-privileged-command-get">No auth required to access CLI terminal. <code class="language-plaintext highlighter-rouge">"privileged command" GET</code></h4>
+
+<h4 id="automatic-license-plate-readers">Automatic License Plate Readers</h4>
+<p><code class="language-plaintext highlighter-rouge">P372 "ANPR enabled"</code></p>
+
+<h4 id="traffic-light-controllers--red-light-cameras">Traffic Light Controllers / Red Light Cameras</h4>
+<p><code class="language-plaintext highlighter-rouge">mikrotik streetlight</code></p>
+
+<h4 id="voting-machines-in-the-united-states">Voting Machines in the United States</h4>
+<p><code class="language-plaintext highlighter-rouge">"voter system serial" country:US</code></p>
+
+<h4 id="open-atm">Open ATM:`</h4>
+<p>May allow for ATM Access availability <code class="language-plaintext highlighter-rouge">NCR Port:"161"</code></p>
+
+<h4 id="telcos-running-cisco-lawful-intercept-wiretaps">Telcos Running Cisco Lawful Intercept Wiretaps</h4>
+<p><code class="language-plaintext highlighter-rouge">"Cisco IOS" "ADVIPSERVICESK9_LI-M"</code></p>
+
+<h4 id="prison-pay-phones">Prison Pay Phones</h4>
+<p><code class="language-plaintext highlighter-rouge">"[2J[H Encartele Confidential"</code></p>
+
+<h4 id="tesla-powerpack-charging-status">Tesla PowerPack Charging Status</h4>
+<p><code class="language-plaintext highlighter-rouge">http.title:"Tesla PowerPack System" http.component:"d3" -ga3ca4f2</code></p>
+
+<h4 id="electric-vehicle-chargers">Electric Vehicle Chargers</h4>
+<p><code class="language-plaintext highlighter-rouge">"Server: gSOAP/2.8" "Content-Length: 583"</code></p>
+
+<h4 id="maritime-satellites">Maritime Satellites</h4>
+<h5 id="shodan-made-a-pretty-sweet-ship-tracker-that-maps-ship-locations-in-real-time-too">Shodan made a pretty sweet Ship Tracker that maps ship locations in real time, too!</h5>
+
+<p><code class="language-plaintext highlighter-rouge">"Cobham SATCOM" OR ("Sailor" "VSAT")</code></p>
+
+<h4 id="submarine-mission-control-dashboards">Submarine Mission Control Dashboards</h4>
+<p><code class="language-plaintext highlighter-rouge">title:"Slocum Fleet Mission Control"</code></p>
+
+<h4 id="carel-plantvisor-refrigeration-units">CAREL PlantVisor Refrigeration Units</h4>
+<p><code class="language-plaintext highlighter-rouge">"Server: CarelDataServer" "200 Document follows"</code></p>
+
+<h4 id="nordex-wind-turbine-farms">Nordex Wind Turbine Farms</h4>
+<p><code class="language-plaintext highlighter-rouge">http.title:"Nordex Control" "Windows 2000 5.0 x86" "Jetty/3.1 (JSP 1.1; Servlet 2.2; java 1.6.0_14)"</code></p>
+
+<h4 id="c4-max-commercial-vehicle-gps-trackers">C4 Max Commercial Vehicle GPS Trackers</h4>
+<p><code class="language-plaintext highlighter-rouge">"[1m[35mWelcome on console"</code></p>
+
+<h3 id="dicom-medical-x-ray-machines">DICOM Medical X-Ray Machines</h3>
+<h4 id="secured-by-default-thankfully-but-these-1700-machines-still-have-no-business-being-on-the-internet">Secured by default, thankfully, but these 1,700+ machines still have no business being on the internet.</h4>
+
+<p><code class="language-plaintext highlighter-rouge">"DICOM Server Response" port:104</code></p>
+
+<h4 id="gaugetech-electricity-meters">GaugeTech Electricity Meters</h4>
+<p><code class="language-plaintext highlighter-rouge">"Server: EIG Embedded Web Server" "200 Document follows"</code></p>
+
+<h4 id="siemens-industrial-automation">Siemens Industrial Automation</h4>
+<p><code class="language-plaintext highlighter-rouge">"Siemens, SIMATIC" port:161</code></p>
+
+<h4 id="siemens-hvac-controllers">Siemens HVAC Controllers</h4>
+<p><code class="language-plaintext highlighter-rouge">"Server: Microsoft-WinCE" "Content-Length: 12581"</code></p>
+
+<h4 id="door--lock-access-controllers">Door / Lock Access Controllers</h4>
+<p><code class="language-plaintext highlighter-rouge">"HID VertX" port:4070</code></p>
+
+<h4 id="railroad-management">Railroad Management</h4>
+<p><code class="language-plaintext highlighter-rouge">"log off" "select the appropriate"</code></p>
+
+<h4 id="tesla-powerpack-charging-status-1">Tesla Powerpack charging Status:</h4>
+<h6 id="helps-to-find-the-charging-status-of-tesla-powerpack-httptitletesla-powerpack-system-httpcomponentd3--ga3ca4f2">Helps to find the charging status of tesla powerpack. <code class="language-plaintext highlighter-rouge">http.title:"Tesla PowerPack System" http.component:"d3" -ga3ca4f2</code></h6>
+
+<h4 id="xzeres-wind-turbine">XZERES Wind Turbine</h4>
+<p><code class="language-plaintext highlighter-rouge">title:"xzeres wind"</code></p>
+
+<h4 id="pips-automated-license-plate-reader">PIPS Automated License Plate Reader</h4>
+<p><code class="language-plaintext highlighter-rouge">"html:"PIPS Technology ALPR Processors""</code></p>
+
+<h4 id="modbus">Modbus</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:502"</code></p>
+
+<h4 id="niagara-fox">Niagara Fox</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:1911,4911 product:Niagara"</code></p>
+
+<h4 id="ge-srtp">GE-SRTP</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:18245,18246 product:"general electric""</code></p>
+
+<h4 id="melsec-q">MELSEC-Q</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:5006,5007 product:mitsubishi"</code></p>
+
+<h4 id="codesys">CODESYS</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:2455 operating system"</code></p>
+
+<h4 id="s7">S7</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:102"</code></p>
+
+<h4 id="bacnet">BACnet</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:47808"</code></p>
+
+<h4 id="hart-ip">HART-IP</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:5094 hart-ip"</code></p>
+
+<h4 id="omron-fins">Omron FINS</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:9600 response code"</code></p>
+
+<h4 id="iec-60870-5-104">IEC 60870-5-104</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:2404 asdu address"</code></p>
+
+<h4 id="dnp3">DNP3</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:20000 source address"</code></p>
+
+<h4 id="ethernetip">EtherNet/IP</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:44818"</code></p>
+
+<h4 id="pcworx">PCWorx</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:1962 PLC"</code></p>
+
+<h4 id="crimson-v30">Crimson v3.0</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:789 product:"Red Lion Controls"</code></p>
+
+<h4 id="proconos">ProConOS</h4>
+<p><code class="language-plaintext highlighter-rouge">"port:20547 PLC"</code></p>
+
+<h1 id="remote-desktop">Remote Desktop</h1>
+
+<h4 id="unprotected-vnc">Unprotected VNC</h4>
+<p><code class="language-plaintext highlighter-rouge">"authentication disabled" port:5900,5901</code> <code class="language-plaintext highlighter-rouge">"authentication disabled" "RFB 003.008"</code></p>
+
+<h4 id="windows-rdp">Windows RDP</h4>
+<h5 id="9999-are-secured-by-a-secondary-windows-login-screen">99.99% are secured by a secondary Windows login screen.</h5>
+
+<p><code class="language-plaintext highlighter-rouge">"\x03\x00\x00\x0b\x06\xd0\x00\x00\x124\x00"</code></p>
+
+<h1 id="c2-infrastructure">C2 Infrastructure</h1>
+
+<h4 id="cobaltstrike-servers">CobaltStrike Servers</h4>
+<p><code class="language-plaintext highlighter-rouge">product:"cobalt strike team server"</code> <code class="language-plaintext highlighter-rouge">product:"Cobalt Strike Beacon"</code> <code class="language-plaintext highlighter-rouge">ssl.cert.serial:146473198</code> - default certificate serial number <code class="language-plaintext highlighter-rouge">ssl.jarm:07d14d16d21d21d07c42d41d00041d24a458a375eef0c576d23a7bab9a9fb1</code></p>
+
+<h4 id="brute-ratel">Brute Ratel</h4>
+<p><code class="language-plaintext highlighter-rouge">http.html_hash:-1957161625 product:"Brute Ratel C4"</code></p>
+
+<h4 id="covenant">Covenant</h4>
+<p><code class="language-plaintext highlighter-rouge">ssl:”Covenant” http.component:”Blazor”</code></p>
+
+<h4 id="metasploit">Metasploit</h4>
+<p><code class="language-plaintext highlighter-rouge">ssl:"MetasploitSelfSignedCA"</code></p>
+
+<h1 id="network-infrastructure">Network Infrastructure</h1>
+<h4 id="hacked-routers">Hacked routers:</h4>
+<ul>
+  <li>Routers which got compromised hacked-router-help-sos</li>
+</ul>
+
+<h4 id="redis-open-instances">Redis open instances</h4>
+<p><code class="language-plaintext highlighter-rouge">product:"Redis key-value store"</code></p>
+
+<h4 id="citrix">Citrix:</h4>
+<ul>
+  <li>Find Citrix Gateway. <code class="language-plaintext highlighter-rouge">title:"citrix gateway"</code></li>
+</ul>
+
+<h4 id="weave-scope-dashboards">Weave Scope Dashboards</h4>
+<ul>
+  <li>Command-line access inside Kubernetes pods and Docker containers, and real-time visualization/monitoring of the entire infrastructure.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">title:"Weave Scope" http.favicon.hash:567176827</code></p>
+
+<h4 id="jenkins-ci">Jenkins CI</h4>
+<p><code class="language-plaintext highlighter-rouge">"X-Jenkins" "Set-Cookie: JSESSIONID" http.title:"Dashboard"</code></p>
+
+<h4 id="jenkins">Jenkins:</h4>
+<ul>
+  <li>Jenkins Unrestricted Dashboard <code class="language-plaintext highlighter-rouge">x-jenkins 200</code></li>
+</ul>
+
+<h4 id="docker-apis">Docker APIs</h4>
+<p><code class="language-plaintext highlighter-rouge">"Docker Containers:" port:2375</code></p>
+
+<h4 id="docker-private-registries">Docker Private Registries</h4>
+<p><code class="language-plaintext highlighter-rouge">"Docker-Distribution-Api-Version: registry" "200 OK" -gitlab</code></p>
+
+<h4 id="pi-hole-open-dns-servers">Pi-hole Open DNS Servers</h4>
+<p><code class="language-plaintext highlighter-rouge">"dnsmasq-pi-hole" "Recursion: enabled"</code></p>
+
+<h4 id="dns-servers-with-recursion">DNS Servers with recursion</h4>
+<p><code class="language-plaintext highlighter-rouge">"port: 53" Recursion: Enabled</code></p>
+
+<h4 id="already-logged-in-as-root-via-telnet">Already Logged-In as root via Telnet</h4>
+<p><code class="language-plaintext highlighter-rouge">"root@" port:23 -login -password -name -Session</code></p>
+
+<h4 id="telnet-access">Telnet Access:</h4>
+<ul>
+  <li>NO password required for telnet access. <code class="language-plaintext highlighter-rouge">port:23 console gateway</code></li>
+</ul>
+
+<h4 id="polycom-video-conference-system-no-auth-shell">Polycom video-conference system no-auth shell</h4>
+<p><code class="language-plaintext highlighter-rouge">"polycom command shell"</code></p>
+
+<h4 id="nport-serial-to-eth--moca-devices-without-password">NPort serial-to-eth / MoCA devices without password</h4>
+<p><code class="language-plaintext highlighter-rouge">nport -keyin port:23</code></p>
+
+<h3 id="android-root-bridges">Android Root Bridges</h3>
+<ul>
+  <li>A tangential result of Google’s sloppy fractured update approach. roll_eyes More information here.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">"Android Debug Bridge" "Device" port:5555</code></p>
+
+<h4 id="lantronix-serial-to-ethernet-adapter-leaking-telnet-passwords">Lantronix Serial-to-Ethernet Adapter Leaking Telnet Passwords</h4>
+<p><code class="language-plaintext highlighter-rouge">Lantronix password port:30718 -secured</code></p>
+
+<h4 id="citrix-virtual-apps">Citrix Virtual Apps</h4>
+<p><code class="language-plaintext highlighter-rouge">"Citrix Applications:" port:1604</code></p>
+
+<h4 id="cisco-smart-install">Cisco Smart Install</h4>
+<ul>
+  <li>Vulnerable (kind of “by design,” but especially when exposed).</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">"smart install client active"</code></p>
+
+<h4 id="pbx-ip-phone-gateways">PBX IP Phone Gateways</h4>
+<p><code class="language-plaintext highlighter-rouge">PBX "gateway console" -password port:23</code></p>
+
+<h3 id="polycom-video-conferencing">Polycom Video Conferencing</h3>
+<p><code class="language-plaintext highlighter-rouge">http.title:"- Polycom" "Server: lighttpd"</code> <code class="language-plaintext highlighter-rouge">"Polycom Command Shell" -failed port:23</code></p>
+
+<h4 id="telnet-configuration">Telnet Configuration:</h4>
+<p><code class="language-plaintext highlighter-rouge">"Polycom Command Shell" -failed port:23</code></p>
+
+<ul>
+  <li>Example: Polycom Video Conferencing</li>
+</ul>
+
+<h4 id="bomgar-help-desk-portal">Bomgar Help Desk Portal</h4>
+<p><code class="language-plaintext highlighter-rouge">"Server: Bomgar" "200 OK"</code></p>
+
+<h4 id="intel-active-management-cve-2017-5689">Intel Active Management CVE-2017-5689</h4>
+<p><code class="language-plaintext highlighter-rouge">"Intel(R) Active Management Technology" port:623,664,16992,16993,16994,16995 ”Active Management Technology”</code>
+`</p>
+<h4 id="hp-ilo-4-cve-2017-12542">HP iLO 4 CVE-2017-12542</h4>
+<p><code class="language-plaintext highlighter-rouge">HP-ILO-4 !"HP-ILO-4/2.53" !"HP-ILO-4/2.54" !"HP-ILO-4/2.55" !"HP-ILO-4/2.60" !"HP-ILO-4/2.61" !"HP-ILO-4/2.62" !"HP-iLO-4/2.70" port:1900</code></p>
+
+<h3 id="lantronix-ethernet-adapters-admin-interface-without-password">Lantronix ethernet adapter’s admin interface without password</h3>
+<p><code class="language-plaintext highlighter-rouge">"Press Enter for Setup Mode port:9999"</code></p>
+
+<h3 id="wifi-passwords">Wifi Passwords:</h3>
+<ul>
+  <li>Helps to find the cleartext wifi passwords in Shodan. <code class="language-plaintext highlighter-rouge">html:"def_wirelesspassword"</code></li>
+</ul>
+
+<h4 id="misconfigured-wordpress-sites">Misconfigured Wordpress Sites:</h4>
+<ul>
+  <li>The wp-config.php if accessed can give out the database credentials. <code class="language-plaintext highlighter-rouge">http.html:"* The wp-config.php creation script uses this file"</code></li>
+</ul>
+
+<h1 id="outlook-web-access">Outlook Web Access:</h1>
+<h4 id="exchange-2007">Exchange 2007</h4>
+<p><code class="language-plaintext highlighter-rouge">"x-owa-version" "IE=EmulateIE7" "Server: Microsoft-IIS/7.0"</code></p>
+
+<h3 id="exchange-2010">Exchange 2010</h3>
+<p><code class="language-plaintext highlighter-rouge">"x-owa-version" "IE=EmulateIE7" http.favicon.hash:442749392</code></p>
+
+<h4 id="exchange-2013--2016">Exchange 2013 / 2016</h4>
+<p><code class="language-plaintext highlighter-rouge">"X-AspNet-Version" http.title:"Outlook" -"x-owa-version"</code></p>
+
+<h4 id="lync--skype-for-business">Lync / Skype for Business</h4>
+<p><code class="language-plaintext highlighter-rouge">"X-MS-Server-Fqdn"</code></p>
+
+<h1 id="network-attached-storage-nas">Network Attached Storage (NAS)</h1>
+<h4 id="smb-samba-file-shares">SMB (Samba) File Shares</h4>
+<ul>
+  <li>Produces ~500,000 results…narrow down by adding “Documents” or “Videos”, etc.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">"Authentication: disabled" port:445</code></p>
+
+<h4 id="specifically-domain-controllers">Specifically domain controllers:</h4>
+<p><code class="language-plaintext highlighter-rouge">"Authentication: disabled" NETLOGON SYSVOL -unix port:445</code></p>
+
+<h4 id="concerning-default-network-shares-of-quickbooks-files">Concerning default network shares of QuickBooks files:</h4>
+<p><code class="language-plaintext highlighter-rouge">"Authentication: disabled" "Shared this folder to access QuickBooks files OverNetwork" -unix port:445</code></p>
+
+<h4 id="ftp-servers-with-anonymous-login">FTP Servers with Anonymous Login</h4>
+<p><code class="language-plaintext highlighter-rouge">"220" "230 Login successful." port:21</code></p>
+
+<h4 id="iomega--lenovoemc-nas-drives">Iomega / LenovoEMC NAS Drives</h4>
+<p><code class="language-plaintext highlighter-rouge">"Set-Cookie: iomega=" -"manage/login.html" -http.title:"Log In"</code></p>
+
+<h4 id="buffalo-terastation-nas-drives">Buffalo TeraStation NAS Drives</h4>
+<p><code class="language-plaintext highlighter-rouge">Redirecting sencha port:9000</code></p>
+
+<h4 id="logitech-media-servers">Logitech Media Servers</h4>
+<p><code class="language-plaintext highlighter-rouge">"Server: Logitech Media Server" "200 OK"</code></p>
+
+<p>E* Example: Logitech Media Servers</p>
+
+<h4 id="plex-media-servers">Plex Media Servers</h4>
+<p><code class="language-plaintext highlighter-rouge">"X-Plex-Protocol" "200 OK" port:32400</code></p>
+
+<h4 id="tautulli--plexpy-dashboards">Tautulli / PlexPy Dashboards</h4>
+<p><code class="language-plaintext highlighter-rouge">"CherryPy/5.1.0" "/home"</code></p>
+
+<h4 id="home-router-attached-usb">Home router attached USB</h4>
+<p><code class="language-plaintext highlighter-rouge">"IPC$ all storage devices"</code></p>
+
+<h1 id="webcams">Webcams</h1>
+
+<h4 id="generic-camera-search">Generic camera search</h4>
+<p><code class="language-plaintext highlighter-rouge">title:camera</code></p>
+
+<h4 id="webcams-with-screenshots">Webcams with screenshots</h4>
+<p><code class="language-plaintext highlighter-rouge">webcam has_screenshot:true</code></p>
+
+<h4 id="d-link-webcams">D-Link webcams</h4>
+<p><code class="language-plaintext highlighter-rouge">"d-Link Internet Camera, 200 OK"</code></p>
+
+<h4 id="hipcam">Hipcam</h4>
+<p><code class="language-plaintext highlighter-rouge">"Hipcam RealServer/V1.0"</code></p>
+
+<h4 id="yawcams">Yawcams</h4>
+<p><code class="language-plaintext highlighter-rouge">"Server: yawcam" "Mime-Type: text/html"</code></p>
+
+<h3 id="webcamxpwebcam7">webcamXP/webcam7</h3>
+<p><code class="language-plaintext highlighter-rouge">("webcam 7" OR "webcamXP") http.component:"mootools" -401</code></p>
+
+<h4 id="android-ip-webcam-server">Android IP Webcam Server</h4>
+<p><code class="language-plaintext highlighter-rouge">"Server: IP Webcam Server" "200 OK"</code></p>
+
+<h4 id="security-dvrs">Security DVRs</h4>
+<p><code class="language-plaintext highlighter-rouge">html:"DVR_H264 ActiveX"</code></p>
+
+<h4 id="surveillance-cams">Surveillance Cams:</h4>
+<p><code class="language-plaintext highlighter-rouge">With username:admin and password: :P NETSurveillance uc-httpd Server: uc-httpd 1.0.0</code></p>
+
+<h1 id="printers--copiers">Printers &amp; Copiers</h1>
+
+<h4 id="hp-printers">HP Printers</h4>
+<p><code class="language-plaintext highlighter-rouge">"Serial Number:" "Built:" "Server: HP HTTP"</code></p>
+
+<h3 id="xerox-copiersprinters">Xerox Copiers/Printers</h3>
+<p><code class="language-plaintext highlighter-rouge">ssl:"Xerox Generic Root"</code></p>
+
+<h4 id="epson-printers">Epson Printers</h4>
+<p><code class="language-plaintext highlighter-rouge">"SERVER: EPSON_Linux UPnP" "200 OK"</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">"Server: EPSON-HTTP" "200 OK"</code></p>
+
+<h3 id="canon-printers">Canon Printers</h3>
+<p><code class="language-plaintext highlighter-rouge">"Server: KS_HTTP" "200 OK"</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">"Server: CANON HTTP Server"</code></p>
+
+<h1 id="home-devices">Home Devices</h1>
+
+<h4 id="yamaha-stereos">Yamaha Stereos</h4>
+<p><code class="language-plaintext highlighter-rouge">"Server: AV_Receiver" "HTTP/1.1 406"</code></p>
+
+<h4 id="apple-airplay-receivers">Apple AirPlay Receivers</h4>
+<ul>
+  <li>Apple TVs, HomePods, etc.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">"\x08_airplay" port:5353</code></p>
+
+<h3 id="chromecasts--smart-tvs">Chromecasts / Smart TVs</h3>
+<p><code class="language-plaintext highlighter-rouge">"Chromecast:" port:8008</code></p>
+
+<h3 id="crestron-smart-home-controllers">Crestron Smart Home Controllers</h3>
+<p><code class="language-plaintext highlighter-rouge">"Model: PYNG-HUB"</code></p>
+
+<h1 id="random-stuff">Random Stuff</h1>
+
+<h4 id="calibre-libraries">Calibre libraries</h4>
+<p><code class="language-plaintext highlighter-rouge">"Server: calibre" http.status:200 http.title:calibre</code></p>
+
+<h4 id="octoprint-3d-printer-controllers">OctoPrint 3D Printer Controllers</h4>
+<p><code class="language-plaintext highlighter-rouge">title:"OctoPrint" -title:"Login" http.favicon.hash:1307375944</code></p>
+
+<h1 id="etherium-miners">Etherium Miners</h1>
+<p><code class="language-plaintext highlighter-rouge">"ETH - Total speed"</code></p>
+
+<h2 id="apache-directory-listings">Apache Directory Listings</h2>
+<ul>
+  <li>Substitute .pem with any extension or a filename like phpinfo.php.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">http.title:"Index of /" http.html:".pem"</code></p>
+
+<h2 id="misconfigured-wordpress">Misconfigured WordPress</h2>
+<ul>
+  <li>Exposed wp-config.php files containing database credentials.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">http.html:"* The wp-config.php creation script uses this file"</code></p>
+
+<h3 id="too-many-minecraft-servers">Too Many Minecraft Servers</h3>
+<p><code class="language-plaintext highlighter-rouge">"Minecraft Server" "protocol 340" port:25565</code></p>
+
+<h4 id="literally-everything-in-north-korea">Literally Everything in North Korea</h4>
+<p><code class="language-plaintext highlighter-rouge">net:175.45.176.0/22,210.52.109.0/24,77.94.35.0/24</code></p>
+
+<h1 id="some-of-my-hidden-aim">Some of my hidden Aim</h1>
+
+<h2 id="dork-1">Dork 1</h2>
+
+<p><code class="language-plaintext highlighter-rouge">has_screenshot:true encrypted attention</code></p>
+
+<h4 id="which-uses-optical-character-recognition-and-remote-desktop-to-find-machines-compromised-by-ransomware-on-the-internet">Which uses optical character recognition and remote desktop to find machines compromised by ransomware on the internet.</h4>
+
+<h1 id="dork-2">Dork 2</h1>
+
+<p><code class="language-plaintext highlighter-rouge">os:"windows 10"</code></p>
+
+<ul>
+  <li>7, 10, 11 {etc}</li>
+</ul>
+
+<h1 id="dork-3">Dork 3</h1>
+
+<p><code class="language-plaintext highlighter-rouge">proftpd port:21</code></p>
+
+<h1 id="dork-4-pivotal-and-imperative-one">Dork 4 Pivotal and Imperative One!</h1>
+
+<p><code class="language-plaintext highlighter-rouge">http.title:"Whoops! There was an error." org:"Amazon.com"</code></p>
+
+<p>Smtp Crendials And AWS Secret Keys.</p>
+
+<p>This leads us to find sensitive data on Exposure Vulnerability.</p>
+
+<hr />
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>this is all for now, more to come..stay tuned!@</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<hr />
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <p>Cheers!</p>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<p>ɹǝqʎɔɯʇ</p>]]></content><author><name></name></author><category term="CyberSecurity" /><category term="Hacking" /><category term="Shodan" /><summary type="html"><![CDATA[My Shodan Dorks hidden aim [Cheatsheet]]]></summary></entry><entry><title type="html">Masscan [tmcybers Hidden Aim]</title><link href="http://localhost:4000/blog/masscan-cheat-sheet" rel="alternate" type="text/html" title="Masscan [tmcybers Hidden Aim]" /><published>2022-12-20T00:00:00+01:00</published><updated>2022-12-20T00:00:00+01:00</updated><id>http://localhost:4000/blog/masscan-cheat-sheet</id><content type="html" xml:base="http://localhost:4000/blog/masscan-cheat-sheet"><![CDATA[<h1 id="en-algunos-casos-masscan-es-mejor-que-nmap">En algunos casos, masscan es mejor que nmap</h1>
 
 <blockquote>
   <blockquote>
