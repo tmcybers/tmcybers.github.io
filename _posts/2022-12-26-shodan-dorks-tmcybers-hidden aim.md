@@ -11,16 +11,16 @@ tags:
 
 # Basic Shodan Filters
 
-* city:
-##### Find devices in a particular city. `city:"Madrid"`
+#### city:
+* Find devices in a particular city. `city:"Madrid"`
 
-* country:
-###### Find devices in a particular country. `country:"IN"`
+#### country:
+* Find devices in a particular country. `country:"IN"`
 
-* geo:
-##### Find devices by giving geographical coordinates. `geo:"56.913055,118.250862"`
+#### geo:
+* Find devices by giving geographical coordinates. `geo:"56.913055,118.250862"`
 
-## Location
+# Location
 `country:us` `country:ru country:de city:chicago`
 
 * hostname:
@@ -540,3 +540,4 @@ This leads us to find sensitive data on Exposure Vulnerability.
 ɹǝqʎɔɯʇ
 
 
+{% include share-buttons.html %}
