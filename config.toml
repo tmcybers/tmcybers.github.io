@@ -1,0 +1,146 @@
+baseurl = "https://examplesite.com/"
+title = "Jane Doe"
+languageCode = "en-us"
+paginate = "10" # Number of posts per page
+#disqusShortname = "" # Enable comments by entering your Disqus shortname
+#googleAnalytics = "" # Enable Google Analytics by entering your tracking id
+#-------------------------------------------------------------------------------
+# DEFAULT SETTINGS
+#-------------------------------------------------------------------------------
+
+# Default Theme
+theme= "gruvhugo"
+
+# Default Post Extension
+defaultExtension= "html"
+
+# Default metadata format for newly created frontmatter using
+# hugo new command. "toml", "yaml", or "json"
+metaDataFormat= "yaml"
+
+[taxonomies]
+  tag      = "tags"
+  category = "categories"
+  series   = "series"
+
+[params.main]
+  enabled = true
+  enableKatex = true
+  metaKeywords = "fast, hugo, theme, minimal, gruvbox"
+  headerTitle = "Jane Doe"
+  copyright = "© 2021 Jane Doe.  <a href=\"https://creativecommons.org/licenses/by/4.0/\">Some rights reserved</a>."
+  name = "jane_doe"
+  img = "img/author.jpg"
+  img_title = "Thanks to Christina @ wocintechchat.com for this photo."
+  icon = "img/logo.png"
+  quote = "A nice quote that you like that describes the beautiful person you are."
+  description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Venenatis urna cursus eget nunc scelerisque viverra mauris in aliquam. Quis risus sed vulputate odio ut. Sed turpis tincidunt id aliquet risus feugiat in ante metus. Bibendum at varius vel pharetra vel turpis. Semper viverra nam libero justo laoreet sit amet cursus. Mauris a diam maecenas sed enim ut sem."
+  licenseUrl = ""
+
+ # Social icons
+  [[params.social]]
+    name = "gitlab"
+    url  = "https://gitlab.com/avron/gruvhugo"
+
+  [[params.social]]
+    name = "email"
+    url  = "mailto:mail@mail.com"
+
+  [[params.social]]
+    name = "gpg"
+    url  = "https://keys.openpgp.org/"
+
+  [[params.social]]
+    name = "twitter"
+    url  = "https://twitter.com/"
+
+  [[params.social]]
+    name = "github"
+    url  = "https://github.com/"
+
+  [[params.social]]
+    name = "linkedin"
+    url  = "https://www.linkedin.com/"
+
+[params.style]
+  # add path to custom CSS files here
+  custom_css = []
+  # add path to custom SCSS files here
+  custom_scss = []
+
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name       = "About"
+    url        = "about"
+
+  [[menu.main]]
+    identifier = "posts"
+    name       = "Blog"
+    url        = "post/"
+
+  [[menu.main]]
+    identifier = "wiki"
+    name       = "Projects"
+    url        = "none"
+
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.asciidocExt]
+    backend = "html5"
+    docType = "article"
+    extensions = []
+    failureLevel = "fatal"
+    noHeaderOrFooter = true
+    safeMode = "unsafe"
+    sectionNumbers = false
+    trace = false
+    verbose = true
+    workingFolderCurrent = false
+    [markup.asciidocExt.attributes]
+  [markup.blackFriday]
+    angledQuotes = false
+    footnoteAnchorPrefix = ""
+    footnoteReturnLinkContents = ""
+    fractions = true
+    hrefTargetBlank = false
+    latexDashes = true
+    nofollowLinks = false
+    noreferrerLinks = false
+    plainIDAnchors = true
+    skipHTML = false
+    smartDashes = true
+    smartypants = true
+    smartypantsQuotesNBSP = false
+    taskLists = true
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.parser]
+      attribute = true
+      autoHeadingID = true
+      autoHeadingIDType = "github"
+    [markup.goldmark.renderer]
+      hardWraps = false
+      unsafe = false
+      xhtml = false
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "monokai"
+    tabWidth = 4
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 2
