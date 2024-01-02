@@ -1,4 +1,4 @@
-baseurl = "https://examplesite.com/"
+baseurl = "https://tmcybers.github.io/"
 title = "Jane Doe"
 languageCode = "en-us"
 paginate = "10" # Number of posts per page
