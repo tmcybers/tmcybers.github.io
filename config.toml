@@ -1,5 +1,5 @@
 baseurl = "https://tmcybers.github.io/"
-title = "Jane Doe"
+title = "tmcyb3r Blog"
 languageCode = "en-us"
 paginate = "10" # Number of posts per page
 #disqusShortname = "" # Enable comments by entering your Disqus shortname
@@ -27,9 +27,9 @@ metaDataFormat= "yaml"
   enabled = true
   enableKatex = true
   metaKeywords = "fast, hugo, theme, minimal, gruvbox"
-  headerTitle = "Jane Doe"
-  copyright = "© 2021 Jane Doe.  <a href=\"https://creativecommons.org/licenses/by/4.0/\">Some rights reserved</a>."
-  name = "jane_doe"
+  headerTitle = "tmcyb3r Blog"
+  copyright = "© 2024 tmcyb3r.  <a href=\"https://creativecommons.org/licenses/by/4.0/\">Some rights reserved</a>."
+  name = "tmcyb3r"
   img = "img/author.jpg"
   img_title = "Thanks to Christina @ wocintechchat.com for this photo."
   icon = "img/logo.png"
