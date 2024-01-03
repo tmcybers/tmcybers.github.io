@@ -1,14 +1,21 @@
 +++
+author = 'tmcyb3r'
 title = 'Criptografia:Simetrica, Asimetrica y Hibrida'
 date = 2023-12-31T12:24:23+01:00
+description = 'Criptografia:Simetrica, Asimetrica y Hibrida'
 draft = false
+tags = [
+    'critografia',
+    'privacy',
+]
 +++
+
 
 # Criptografía simétrica
 
 La criptografía simétrica solo utiliza una clave para cifrar y descifrar el mensaje, que tiene que conocer el emisor y el receptor previamente y este es el punto débil del sistema, la comunicación de las claves entre ambos sujetos, ya que resulta más fácil interceptar una clave que se ha transmitido sin seguridad (diciéndola en alto, mandándola por correo electrónico u ordinario o haciendo una llamada telefónica).
 
-![Simetrica](/simetrica.png)
+![Simetrica](/images_post/simetrica.png)
 
 Teóricamente debería de ser más fácil conocer la clave interceptándola que probándola una por una por fuerza bruta, teniendo en cuenta que la seguridad de un mensaje cifrado debe recaer sobre la clave y nunca sobre el algoritmo (por lo que sería una tarea eterna reventar la clave, como comenté en un ejemplo de ataque por fuerza bruta).
 
@@ -19,7 +26,7 @@ El inconveniente que tiene este sistema es que si quieres tener un contenido tot
 
 La criptografía asimétrica se basa en el uso de dos claves: la pública (que se podrá difundir sin ningún problema a todas las personas que necesiten mandarte algo cifrado) y la privada (que no debe de ser revelada nunca).
 
-![Simetrica](/asimetrica.png)
+![Simetrica](/images_post/asimetrica.png)
 
 Sabiendo lo anterior, si queremos que tres compañeros de trabajo nos manden un archivo cifrado debemos de mandarle nuestra clave pública (que está vinculada a la privada) y nos podrán mandar de forma confidencial ese archivo que solo nosotros podremos descifrar con la clave privada.
 
@@ -39,7 +46,7 @@ Para empezar, la criptografía simétrica es más insegura ya que el hecho de pa
 
 Este sistema es la unión de las ventajas de los dos anteriores, debemos de partir que el problema de ambos sistemas criptográficos es que el simétrico es inseguro y el asimétrico es lento.
 
-![Simetrica](/hibrida.png)
+![Simetrica](/images_post/hibrida.png)
 
 El proceso para usar un sistema criptográfico híbrido es el siguiente (para enviar un archivo):
 
