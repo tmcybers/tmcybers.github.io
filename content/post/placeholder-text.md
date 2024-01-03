@@ -1,5 +1,5 @@
 +++
-author = "Hugo Authors"
+author = "tmcyb3r"
 title = "Placeholder Text"
 date = "2019-03-09"
 description = "Lorem Ipsum Dolor Si Amet"

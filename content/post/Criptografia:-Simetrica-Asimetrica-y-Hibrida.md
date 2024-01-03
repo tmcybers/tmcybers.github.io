@@ -5,8 +5,9 @@ date = 2023-12-31T12:24:23+01:00
 description = 'Criptografia:Simetrica, Asimetrica y Hibrida'
 draft = false
 tags = [
-    'critografia',
+    'critography',
     'privacy',
+    'encryption'
 ]
 +++
 
