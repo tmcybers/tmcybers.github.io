@@ -33,34 +33,30 @@ metaDataFormat= "yaml"
   img = "img/tmcyb3r.jpeg"
   img_title = "Thanks to Christina @ wocintechchat.com for this photo."
   icon = "img/tmcyb3r.jpeg"
-  quote = "Cybersecurity Researcher"
-  description= "Human in The Loop.Let’s become amazing learners! Together, we’ll navigate the exciting and ever-evolving landscape of artificial intelligence and technology."
+  quote = "VM Analyst"
+  description= "Human in The Loop"
   licenseUrl = ""
 
  # Social icons
   [[params.social]]
-    name = "gitlab"
-    url  = "https://gitlab.com/avron/gruvhugo"
+    name = "github"
+    url  = "https://github.com/tmcybers"
 
   [[params.social]]
-    name = "email"
-    url  = "mailto:mail@mail.com"
+    name = "matrix"
+    url  = "https://matrix.to/#/@discloseds3c:matrix.org"
 
   [[params.social]]
-    name = "gpg"
-    url  = "https://keys.openpgp.org/"
+    name = "mastodon"
+    url  = "https://ioc.exchange/@tmcyber"
 
   [[params.social]]
     name = "twitter"
-    url  = "https://twitter.com/"
-
-  [[params.social]]
-    name = "github"
-    url  = "https://github.com/"
+    url  = "https://twitter.com/tmcyb3r"
 
   [[params.social]]
     name = "linkedin"
-    url  = "https://www.linkedin.com/"
+    url  = "https://www.linkedin.com/in/tmcyb3r/"
 
 [params.style]
   # add path to custom CSS files here
