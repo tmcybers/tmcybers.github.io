@@ -1,24 +1,23 @@
 +++
 title = "About"
-description = "Hugo, the world's fastest framework for building websites"
+description = "Building websites"
 date = "2024-01-03"
 aliases = ["about", "about", "contact"]
 author = "tmcyb3r"
 +++
 
+## tmcyb3r@laptop:~/$ tree ./my_activity/
 
 ~~Back to the roots. Where old school meets modern art~~
-
-
 
    * tmcyb3r@laptop:~/$ /info security and development
    * tmcyb3r@laptop:~/$ /version 3.0
    * tmcyb3r@laptop:~/$ /revision 28/12/2023
    * tmcyb3r@laptop:~/$ /date 2023-12-05
 
-**Information**
+# Information
 
- * tmcyb3r@laptop:~/$ cat /Information.txt  
+# tmcyb3r@laptop:~/$ cat /Information.txt  
 
 ~~For further information about skills and business check my LINKEDIN profile~~
 
@@ -27,9 +26,9 @@ author = "tmcyb3r"
 * tmcyb3r@laptop:~/$ /proc/food: Coffe+Cyber
 * tmcyb3r@laptop:~/$ /proc/type: [GEEK] enthusiast obsessed with computers, GNU/Linux, FOSS Android and Security.
 
-**Environment**
+# Environment
 
-* tmcyb3r@laptop:~/$ cat /Environment.txt
+### tmcyb3r@laptop:~/$ cat /Environment.txt
 
 ~~I'm always checking out new stuff but currently I ended up with this preferred and beloved setup:~~
 
@@ -44,9 +43,9 @@ author = "tmcyb3r"
 * tmcyb3r@laptop:~/$ /dev/vcs: Git
 * tmcyb3r@laptop:~/$ /dev/kblayout: US
 
-**Work**
+# Work
 
-* tmcyb3r@laptop:~/$ cat /Work.txt 
+### tmcyb3r@laptop:~/$ cat /Work.txt 
 
 ~~Quality is not an act, it is a habit~~
 
@@ -54,9 +53,9 @@ author = "tmcyb3r"
 * tmcyb3r@laptop:~/$ /dev/repo gitHub
 * tmcyb3r@laptop:~/$ /repro-builds/ reproducible builds
 
-**Events**
+# Events
 
-* tmcyb3r@laptop:~/$ cat /Events.txt
+### tmcyb3r@laptop:~/$ cat /Events.txt
 
 ~~I'm interested in visiting conferences world wide so don't be shy to tell me about~~
 
@@ -65,18 +64,18 @@ author = "tmcyb3r"
 
 
 
-**GnuPG**
+# GnuPG
 
-* tmcyb3r@laptop:~/$ cat /GnuPG.txt
+### tmcyb3r@laptop:~/$ cat /GnuPG.txt
 
 ~~Everyone is a proponent of strong encryption~~
 * Key ID (4096-bit): Obsolete
 * Fingerprint: Obsolete
 * Public key: local copy obsolete, use email clients with encryption instead.
 
-**Contact**
+# Contact
 
-* tmcyb3r@laptop:~/$ cat /Contact.txt
+### tmcyb3r@laptop:~/$ cat /Contact.txt
 
 ~~Preferably Encrypted messaging and emails~~
 * ``Direct:Encrypted enabled;The encryption is essential to talk to me``
@@ -84,13 +83,12 @@ author = "tmcyb3r"
 * [Jabber/XMPP+OMEMO] tmcyb3r@jabber.ccc.de
 * [Matrix] @discloseds3c:matrix.org
 
-~Stay in touch~
 
-**Social**
+# Social
 
-* tmcyb3r@laptop:~/$ cat /Social.txt 
+### tmcyb3r@laptop:~/$ cat /Social.txt 
 
-~~Get in Touch~~
+~~Stay in touch~~
 
 * [GitHub] /tmcybers
 * [Mastodon] /ioc.exchange/@tmcyber
