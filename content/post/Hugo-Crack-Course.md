@@ -146,8 +146,8 @@ En este /post nos centramos mas en hacer el blog, el deploy y su seguridad mas q
 
 # IMPORTANTE: 
 
-#### Tanto ahora como en un futuro nunca hagas `hugo` de sitio/blog,  hugo creara tu sitio estatico, hara el build de tu blog/sitio en un dir llamado /public, esa carpeta/directorio es tu blog publico sin deployment(o server), que la tienes que alojar en un servidor/servicio como netlify, heroku, back4app, etc. Pero no es nustero caso, mi metodologia es otra, ya veras.
-### Este paso arriba descrito es importantisimo a dia de hoy, porque github pages ya viene incluido y github hara solito el deploy de tu blog hugo, lo vamos a configurar en el repo por defecto, y listo.
+#### Tanto ahora como en un futuro nunca hagas `hugo` de sitio/blog,  hugo creara tu sitio estatico, hara el build de tu blog/sitio en un dir llamado /public, esa carpeta/directorio es tu blog publico sin deployment(o server), que la tienes que alojar en un servidor/servicio como netlify, heroku, back4app, etc. Pero no es nuestro caso, mi metodologia es otra, ya veras.
+### Este paso arriba descrito es importantisimo a dia de hoy, porque github pages ya viene como incluido con hugo y github hara solito el "Build" de tu blog hugo, lo vamos a configurar en el repo por defecto, y listo.
 
 
 # Breve despliegue y profundismo de un blog en hugo (recomiendo leerlo):
@@ -229,7 +229,7 @@ ls #lista.
 
 git status #buena practica, mira bien el log antes de push--ear y add. No olvides de git init, ya lo hemos hecho.
 
-git add . #git add y punto . al final anade todo los archivos asi como folders en una lista/.espera para subirlos.
+git add . #git add y punto . al final añade todo los archivos asi como folders en una lista/.espera para subirlos.
 
 git commit -m "second commit ready to upload my blog" #el commit es dios.git, es funda=mental.
 
@@ -254,20 +254,20 @@ Proceed:
 ```
 git status #pesaadoo, lo se , hazlo ;)
 git add origin remote  #copias y pegas la direccion de tu repo https:// ..............git, y listo, enter.
-git push -u origin main #listo hemos empujado todo nuestro blog/site a github, a prtir de ahora solo 'git push'.
+git push -u origin main #listo hemos empujado todo nuestro blog/site a github, a partir de ahora solo 'git push'.
 
 Diccionario:
-#origin(el origen,e el repo, donde? en main, eso si) 
-#main (la rama main) (usala siempre, o nombrala a develop o work, no hay inconveniente, usa un nombre professional;))
+#origin (el origen,el repo, donde? en main, eso si) 
+#main (la rama main) (usala siempre, o nombrala a develop o work, no hay inconveniente, usa un nombre profesional y acorde.)
 ```
 
 Ve a : la pestaña /Actions de tu /repo y veras el deploy en vivo ;) asi como algun error que puede succeder, no descarto, es la vida de /devs :)
 
 *Actualiza la pagina de tu repo y veras el contenido subido.*
 
-Ahora necesitamos un dir llamado /workflow/github/gh-pages.yml para la rama gh-pages, a dia de hoy es obsoleto `ojo con esto`, no es necesario, ya que github la tiene como incluida:(Esto si no tienes pensado en alojar tu blog/sitio en github, pero si es otro cliente/servicio entonces posibile que necesites otro tipo de setting).
+Ahora necesitamos un dir llamado /workflow/github/gh-pages.yml para la rama gh-pages, a dia de hoy es obsoleto `ojo con esto`, no es necesario, ya que github la tiene como incluida:(Si no tienes pensado en alojar tu blog/sitio en github y es otro cliente/servicio entonces posibile que necesites otro tipo de setting).
 
-#### Ve a setting tu repo: 
+#### Ve a Settings de tu repo: 
 
 Arriba del todo veras algo asi:
 ```
@@ -282,9 +282,9 @@ Last deployed by @tmcybers tmcybers 9 hours ago
 * 1.Settings
 * 2.Pages
 * 3.Github Actions (despliega)
-* 4.Github Actions de nuevo y elije `Hugo` te aparecera en grande:) pincha en complete y commit de ello en tu repo, y listo, github se encargara del build-ing y deploy de tu blog/site, no tienes que hacer nada mas, eso viene por defecto en github asociado a github-pages para hugo.
+* 4.Github Actions de nuevo y elije `Hugo` te aparecera en grande:) pincha en Complete y Commit de ello en tu repo, y listo, ese archivo de github se encargara del build-ing y deploy de tu blog/site, no tienes que hacer nada mas, eso viene por defecto en github asociado a github-pages para hugo.
 
-El custom domain, si lo tienes de otro provedor que no sea cloudflare, tienes que asignarlo con DNS check (DNS Check in Progress y etc), esto segun cada cliente, con cloudflare lo hacemos en la pagina de ellos, y no en github.
+El custom domain, si lo tienes de otro provedor que no sea cloudflare, tienes que asignarlo con su correspondiente DNS, esto segun cada cliente, con cloudflare lo hacemos en la pagina de ellos, y no en github.
 
 #### Atento: no olvides ahora editar `hugo.toml` o como se llame el tuyo y asignar `baseURL = 'user.github.io'` , o si tienes dominio personal asignalo ahora o antes del deployment.
 
@@ -307,7 +307,7 @@ git push #push-it.
 
 En este paso tienes la cuenta de cloudflare, si no tienes una create-la, es free, no worry (tuve que usar una vpn para ello, de alguna manera cloudflare no le tenia carino a mi ip :) asi que usa una vpn para ello y listo, luego te dejara pasar con tu ip)
 
-##### En 2024, Ve a:
+## En 2024, Ve a:
 
 * 1.Workers & Pages
 * 2.Overview.
