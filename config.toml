@@ -55,6 +55,10 @@ metaDataFormat= "yaml"
     url  = "https://twitter.com/tmcyb3r"
 
   [[params.social]]
+    name = "dev"
+    url  = "https://wakatime.com/@tmcyber"
+
+  [[params.social]]
     name = "linkedin"
     url  = "https://www.linkedin.com/in/tmcyb3r/"
 
