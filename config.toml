@@ -28,14 +28,14 @@ metaDataFormat= "yaml"
   enableKatex = true
   metaKeywords = "fast, hugo, theme, minimal, gruvbox"
   headerTitle = "tmcyb3r Blog"
-  copyright = "© 2024 tmcyb3r.  <a href=\"https://creativecommons.org/licenses/by/4.0/\">Some rights reserved</a>."
+  copyright = "© 2024 tmcyb3r.  <a href=\"https://creativecommons.org/licenses/by/4.0/\">Some rights reserved.CC BY 4.0.Attribution.You may need to get additional permissions before using the material as you intend.</a>."
   name = "tmcyb3r"
   img = "img/tmcyb3r.jpeg"
   img_title = "Thanks to Christina @ wocintechchat.com for this photo."
   icon = "img/tmcyb3r.jpeg"
   quote = "VM Analyst"
   description= "Human in The Loop"
-  licenseUrl = ""
+  licenseUrl = "tmcyb3r.com"
 
  # Social icons
   [[params.social]]
@@ -73,12 +73,12 @@ metaDataFormat= "yaml"
   [[menu.main]]
     identifier = "posts"
     name       = "Blog"
-    url        = "post/"
+    url        = "posts"
 
   [[menu.main]]
-    identifier = "wiki"
+    identifier = "projects"
     name       = "Projects"
-    url        = "none"
+    url        = "projects"
 
 [markup]
   defaultMarkdownHandler = "goldmark"
