@@ -7,7 +7,8 @@ draft = false
 tags = [
     'GrapheneOS',
     'privacy',
-    'encryption'
+    'encryption',
+    'fossfreedom'
 ]
 +++
 
